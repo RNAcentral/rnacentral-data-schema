@@ -1,0 +1,19 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Modification",
+        "description": "A description of a modification that has occured",
+        "id": "modification.json#",
+        "type": "object",
+        "properties": {
+                "index": {
+                        "type": "int",
+                        "description": "0 based index of the modificaton"
+                },
+
+                "modification": {
+                        "type": "string",
+                        "description": "The name of the modification. Should be a human readable name"
+                }
+        }
+}
+

@@ -1,0 +1,16 @@
+# RNAcentral data schema
+
+This repository contains the [JSON schema](http://json-schema.org) files for
+importing data into [RNAcentral]. The goal is create a generic, simple method
+of importing data into RNAcentral. Currently the schema here are under review
+are are not ready for real world use case. If you are interested in providing
+feedback please open an issue or pull request.
+
+The work here is based off the
+[agr_schemas](https://github.com/alliance-genome/agr_schemas) version 0.6.2.
+The top level schema is `rnacentral-schema.json` with subsections stored in
+`sections`. Examples will be found in `examples` and a validation script
+is provided in `validate.py`. 
+
+
+[RNAcentral]: http://rnacentral.org

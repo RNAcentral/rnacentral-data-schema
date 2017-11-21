@@ -1,0 +1,37 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Load File Meta Data",
+        "id": "metaData.json#",
+        "description": "An standard set of information regarding when and from whom the load was generated.",
+        "type": "object",
+        "required": ["dateProduced", "dataProvider", "schemaVersion"],
+        "additionalProperties": false,
+        "properties": {
+                "dateProduced": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Date this entity was dumped from it's primary data source."
+                },
+                "dataProvider": {
+                        "$ref" : "data-provider.json#/properties/dataProvider",
+                        "description": "MOD or source of data."
+                },
+                "publications": {
+                        "type": "array",
+                        "items": {
+                                "description": "The publications describing this database",
+                                "$ref": "publication.json#/properties/modPublicationId"
+                        }
+                },
+                "release": {
+                        "type": "string",
+                        "description": "The release or version of the data, if available."
+                },
+                "schemaVersion": {
+                        "description": "The schema version this file follows",
+                        "enum": [
+                                "0.0.1"
+                        ]
+                }
+        }
+}

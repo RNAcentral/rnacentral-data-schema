@@ -1,0 +1,16 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Sequences",
+        "id": "sequence.json#",
+        "description": "A description of a DNA seqence",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+                "sequence": {
+                        "description": "A DNA sequence",
+                        "type" : "string",
+                        "pattern" : "^[ACGTN]+$"
+                }
+        }
+}
+

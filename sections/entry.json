@@ -1,0 +1,148 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "RNAcentral Entry object",
+        "description": "A sequence to import to RNAcentral. These entry must not be pseudogenes and be non-coding RNA transcripts.",
+        "id": "entry.json#",
+        "type": "object",
+        "required": ["primaryId", "taxonId", "name", "soTermId", "sequence", "version", "url"],
+        "additionalProperties": false,
+        "properties": {
+                "primaryId": {
+                        "$ref" : "global-id.json#/properties/globalId",
+                        "description": "The prefixed primary (MOD) ID for an entity. For internal AGR use, e.g. FB:FBgn0003301, MGI:87917."
+                },
+                "taxonId": {
+                        "$ref" : "global-id.json#/properties/globalId",
+                        "description" : "The NCBI taxonId for the species of the gene entity."
+                },
+                "soTermId": {
+                        "$ref" : "global-id.json#/properties/globalId",
+                        "description": "The SO Term that represents as best we can, the bioType, or featureType of the object in the file."
+                },
+                "sequence": {
+                        "$ref": "sequence.json#properties/sequence",
+                        "description": "The DNA sequence of this entry."
+                },
+                "name": {
+                        "type": "string",
+                        "description": "The name of this sequence."
+                },
+                "version": {
+                        "description": "The version of this sequence, if any"
+                },
+                "gene": {
+                        "symbol": {
+                                "type": "string",
+                                "description": "The gene symbol for this entry."
+                        },
+                        "synonyms": {
+                                "type": "array",
+                                "items": {
+                                        "type": "string"
+                                },
+                                "uniqueItems": true,
+                                "description": "A list of other symbols for the gene"
+                        }
+                },
+                "crossReferenceIds": {
+                        "description":"Collection holding a limited set (for now) of database cross references for each gene.  That set is defined in geneCrossReferences.json dataSoruce enumeration.  NCBI GENE means just the NCBI Gene reference.  UniProtKB is swissprot and trembl.  Ensembl is just the GENE id for now (not transcript nor protein).",
+                        "type": "array",
+                        "items": {
+                                "$ref" : "global-id.json#/properties/globalId"
+                        },
+                        "uniqueItems": true
+                },
+                "genomeLocations": {
+                        "description":"Collection holding the set of locations for this sequence. This should include the exon/intron structure of the sequence.",
+                        "type": "array",
+                        "items": {
+                                "$ref" : "location.json#"
+                        },
+                        "uniqueItems": true
+                },
+                "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "URL to the page for this entry in the database"
+                },
+                "externalUrl": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "URL to a synopsis outside the database, like wikipedia."
+                },
+                "secondaryStructure": {
+                        "description": "The secondary structure in dot-bracket notation for this sequence",
+                        "$ref": "secondary-structure.json#/properties/dot_bracket"
+                },
+                "publications": {
+                        "description": "List of references to associate with this sequence.",
+                        "type": "array",
+                        "items": {
+                                "$ref": "publication.json#/properties/pubMedId"
+                        },
+                        "uniqueItems": true
+                },
+                "localization": {
+                        "description": "Name of the organelle or plasmid this sequence is found in",
+                        "enum": [
+                                "mitochondria",
+                                "plastid",
+                                "chloroplast",
+                                "plasmid"
+                        ]
+                },
+                "sequenceFeatures": {
+                        "anticodon": {
+                                "description": "Information about the anticodon",
+                                "$ref": "anticodon.json#"
+                        },
+                        "modifications": {
+                                "description": "List of the modifications in this sequence",
+                                "type": "list",
+                                "items": {
+                                        "$ref": "modification.json#"
+                                },
+                                "uniqueItems": true
+                        }
+                },
+                "sourceModel": {
+                        "description": "Information about the model used to find this sequence",
+                        "$ref" : "global-id.json#/properties/globalId"
+                },
+                "product": {
+                        "description": "The name of the product, this should be more specific than the name of the SO term that was provided",
+                        "type": "string"
+                },
+                "additionalAnnotations": {
+                        "isoType": {
+                                "description": "The isoType of this tRNA",
+                                "enum": [
+                                        "Ala",
+                                        "Cys",
+                                        "Asp",
+                                        "Glu",
+                                        "Phe",
+                                        "Gly",
+                                        "His",
+                                        "Ile",
+                                        "Lys",
+                                        "Leu",
+                                        "Met",
+                                        "Asn",
+                                        "Pro",
+                                        "Gln",
+                                        "Arg",
+                                        "Ser",
+                                        "Thr",
+                                        "Val",
+                                        "Trp",
+                                        "Tyr"
+                                ]
+                        },
+                        "percursorSequenceId": {
+                                "description": "ID for the precursor sequence, if any, for this sequence. For example miRBase can use this to define the percusor sequence to a miRNA",
+                                "$ref" : "global-id.json#/properties/globalId"
+                        }
+                }
+        }
+}

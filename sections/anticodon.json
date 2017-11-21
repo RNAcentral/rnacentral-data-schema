@@ -1,0 +1,20 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Anticodon",
+        "description": "A description of an anticodon in a tRNA",
+        "id": "anticodon.json#",
+        "type": "object",
+        "properties": {
+                "indexes": {
+                        "type": "array",
+                        "description": "0 based indexes of the anticodon"
+                },
+
+                "sequence": {
+                        "type": "string",
+                        "pattern": "^(ACGU){3}$"
+                }
+        }
+}
+
+

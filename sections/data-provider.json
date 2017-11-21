@@ -1,0 +1,41 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Known ",
+        "id": "dataProvider.json#",
+        "description": "An standard set of information regarding data source and taxon ids for the AGR.",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+                "dataProvider": {
+                        "description": "The current list of supported database in RNAcentral",
+                        "enum": [
+                                "DICTY",
+                                "ENA",
+                                "ENSEMBL",
+                                "FB",
+                                "GENCODE",
+                                "GG",
+                                "GT",
+                                "HGNC",
+                                "LNCP",
+                                "LNCRDB",
+                                "MGI",
+                                "MIR",
+                                "MOD",
+                                "NONCODE",
+                                "PB",
+                                "PDBE",
+                                "RDP",
+                                "RF",
+                                "RFAM",
+                                "SGD",
+                                "SILVA",
+                                "SNOPY",
+                                "SRPDB",
+                                "TAIR",
+                                "TMW",
+                                "WB"
+                        ]
+                }
+        }
+}

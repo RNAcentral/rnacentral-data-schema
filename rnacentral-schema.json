@@ -1,0 +1,21 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "RNAcentral import file.",
+        "description": "A file of RNAcentral entry objects.",
+        "id": "rnacentral-schema.json",
+        "type": "object",
+        "required": ["metaData", "data"],
+        "properties": {
+                "metaData": {
+                        "$ref": "metaData.json#",
+                        "description": "meta data of the load file as defined in metadata.json."
+                },
+                "data": {
+                        "type": "array",
+                        "description": "A list of RNAcentral entry objects.",
+                        "items": {
+                                "$ref" : "entry.json#"
+                        }
+                }
+        }
+}

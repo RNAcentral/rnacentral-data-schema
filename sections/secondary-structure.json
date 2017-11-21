@@ -1,0 +1,15 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Secondary structure definition",
+        "description": "The secondary structure of an entry",
+        "id": "secondary-structure.json#",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+                "dot_bracket": {
+                        "description": "The dot-bracket string, which must be as long as the sequence",
+                        "type": "string",
+                        "pattern": "^[().]+$"
+                }
+        }
+}
