@@ -127,6 +127,7 @@
                                         "Ile",
                                         "Lys",
                                         "Leu",
+                                        "iMet",
                                         "Met",
                                         "Asn",
                                         "Pro",
@@ -139,7 +140,7 @@
                                         "Tyr"
                                 ]
                         },
-                        "percursorSequenceId": {
+                        "precursorSequenceId": {
                                 "description": "ID for the precursor sequence, if any, for this sequence. For example miRBase can use this to define the percusor sequence to a miRNA",
                                 "$ref" : "global-id.json#/properties/globalId"
                         }
