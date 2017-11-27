@@ -18,6 +18,21 @@ def validate_secondary_structure(data):
         assert(len(entry['secondaryStructure']) == len(entry['sequence']))
 
 
+# Unsure if we should require this, maybe make it an option? I will leave the
+# code here for now.
+def validate_id_format(data):
+    expected = data['metaData']['dataProvider']
+    for entry in data['data']:
+        primary_id = entry['primaryId']
+        db, _ = primary_id.split(':', 1)
+        assert db == expected, "Expected %s to start with %s" % (primary_id, expected)
+
+        gene_id = entry.get('gene', {}).get('geneId', None)
+        if gene_id:
+            gene_db = primary_id.split(':', 1)
+            assert gene_db == expected
+
+
 @click.command()
 @click.argument('filename')
 @click.option('--schema', default='rnacentral-schema.json',
@@ -31,7 +46,7 @@ def main(filename, schema=None, sections=None):
     with open(schema, 'rb') as raw:
         schema_data = json.load(raw)
 
-    # schema_dir = os.path.dirname(os.path.abspath(schema))
+    sections = os.path.abspath(sections)
     base = 'file://%s/' % sections
     file_resolver = js.RefResolver(base_uri=base, referrer=schema)
 
