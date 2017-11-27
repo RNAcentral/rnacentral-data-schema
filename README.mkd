@@ -10,7 +10,28 @@ The work here is based off the
 [agr_schemas](https://github.com/alliance-genome/agr_schemas) version 0.6.2.
 The top level schema is `rnacentral-schema.json` with subsections stored in
 `sections`. Examples will be found in `examples` and a validation script
-is provided in `validate.py`. 
+is provided in `validate.py`.
 
+## Requirements
+
+The validation script requires the python packages found in `requirements.txt`.
+Install them with `pip install -r requirements.txt`. Validation is not yet
+provided as a library, but may be in the future.
+
+## Validating files
+
+The validator script in `./validate.py` can be used to validate files. Below
+are some example usages:
+
+```sh
+./validate.py examples/flybase.json
+```
+
+If you have moved schema files, or the directory of sections around you can use
+the `--schema` or `--sections` options. Like:
+
+```sh
+./validate.py --schema different-schema.json --sections new-sections.json examples/flybase.json
+```
 
 [RNAcentral]: http://rnacentral.org
