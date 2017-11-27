@@ -18,6 +18,22 @@ def validate_secondary_structure(data):
         assert(len(entry['secondaryStructure']) == len(entry['sequence']))
 
 
+def validate_is_known_global_ids(data):
+    with open('sections/data-provider.json', 'rb') as raw:
+        known = json.load(raw)
+        known = set(known["properties"]['dataProvider']['enum'])
+
+    for entry in data["data"]:
+        gene_id = entry.get('gene', {}).get('geneId', None)
+        if gene_id:
+            name, _ = gene_id.split(':', 1)
+            assert name in known, "Unknown database: %s" % name
+
+        for global_id in entry['crossReferenceIds']:
+            name, _ = global_id.split(':', 1)
+            assert name in known, "Xref to unknown db: %s" % name
+
+
 # Unsure if we should require this, maybe make it an option? I will leave the
 # code here for now.
 def validate_id_format(data):
@@ -57,6 +73,7 @@ def main(filename, schema=None, sections=None):
         resolver=file_resolver,
     )
     validate_secondary_structure(data)
+    validate_is_known_global_ids(data)
 
 
 if __name__ == '__main__':
