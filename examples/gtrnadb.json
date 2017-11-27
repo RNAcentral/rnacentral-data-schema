@@ -1,0 +1,43 @@
+{
+        "data": [{
+                "primaryId": "GTRNADB:tRNA-Ala-CGC-1-1",
+                "taxonId": "NCBITaxon:329726",
+                "soTermId": "SO:0000253",
+                "sequence": "GGGGAATTAGCTCAGCTGGTAGAGTGCTGCGATCGCACCGCAGAGGTCAGGGGTTCGAATCCCCTATTCTCCA",
+                "name": " tRNA-Ala (CGC)",
+                "version": "1",
+                "gene": {
+                        "symbol": "tRNA-Ala-CGC-1-1"
+                },
+                "genomeLocations": [{
+                        "assembly": "ASM1810v1",
+                        "gca_accession": "GCA_000018105.",
+                        "ucsc_accession": "",
+                        "exons": [{
+                                "INSDC_accession": "CP000828.1",
+                                "chromosome": "chr",
+                                "startPosition": 603738,
+                                "endPosition": 603810,
+                                "strand": "+"
+                        }]
+                }],
+                "url": "http://gtrnadb.ucsc.edu/genomes/bacteria/Acar_mari_MBIC11017/genes/tRNA-Ala-CGC-1-1.html",
+                "crossReferenceIds": [
+                        "RNACENTRAL:URS00002F9CDD"
+                ],
+                "secondaryStructure": "(((((((..((((........)))).(((((.......))))).....(((((.......)))))))))))).",
+                "sequenceFeatures": {
+                        "anticodon": {
+                                "sequence": "CGC",
+                                "indexes": [34, 35, 36]
+                        }
+                }
+        }],
+        "metaData": {
+                "dateProduced": "2017-11-20T22:19:12+01:00",
+                "dataProvider": "GTRNADB",
+                "release": "2.0",
+                "schemaVersion": "0.0.1"
+        }
+}
+
