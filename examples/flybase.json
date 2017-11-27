@@ -24,8 +24,8 @@
                 }],
                 "url": "http://flybase.org/reports/FBgn0267497.html",
                 "crossReferenceIds": [
-                        "RC:URS00009E14DF",
-                        "RF:NR_133553.1"
+                        "RNACENTRAL:URS00009E14DF",
+                        "REFSEQ:NR_133553.1"
                 ]
         }],
         "metaData": {
