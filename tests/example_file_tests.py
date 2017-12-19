@@ -33,4 +33,4 @@ def test_can_validate_all_example_files(filename):
 
     print(os.path.abspath(os.curdir))
     print(os.listdir('sections'))
-    validate.validate(data, validate.SCHEMA_NAME)
+    validate.validate(data, validate.SCHEMA_NAME, validate.SECTIONS)
