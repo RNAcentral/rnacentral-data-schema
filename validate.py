@@ -20,7 +20,7 @@ def validate_secondary_structure(data):
 
 
 def validate_is_known_global_ids(data):
-    with open('sections/data-provider.json', 'rb') as raw:
+    with open('sections/data-provider.json', 'r') as raw:
         known = json.load(raw)
         known = set(known["properties"]['dataProvider']['enum'])
 
@@ -61,7 +61,7 @@ def validate_id_format(data):
 
 def validate(data, schema_path, sections_path):
 
-    with open(schema_path, 'rb') as raw:
+    with open(schema_path, 'r') as raw:
         schema = json.load(raw)
 
     base = 'file://%s/' % sections_path
@@ -83,7 +83,7 @@ def validate(data, schema_path, sections_path):
 @click.option('--sections', default=SECTIONS,
               help='Directory where schema parts are kept')
 def main(filename, schema=None, sections=None):
-    with open(filename, 'rb') as raw:
+    with open(filename, 'r') as raw:
         data = json.load(raw)
 
     validate(data, schema, os.path.abspath(sections))
