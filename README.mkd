@@ -1,5 +1,7 @@
 # RNAcentral data schema
 
+[![Build Status](https://travis-ci.org/RNAcentral/rnacentral-import-pipeline.svg?branch=master)](https://travis-ci.org/RNAcentral/rnacentral-import-pipeline)
+
 This repository contains the [JSON schema](http://json-schema.org) files for
 importing data into [RNAcentral]. The goal is create a generic, simple method
 of importing data into RNAcentral. Currently the schema here are under review
