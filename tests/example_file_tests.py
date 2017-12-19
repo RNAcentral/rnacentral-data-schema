@@ -31,4 +31,6 @@ def test_can_validate_all_example_files(filename):
     with open(filename, 'r') as raw:
         data = json.load(raw)
 
-    validate.validate(data, validate.SCHEMA_NAME, validate.SECTIONS)
+    print(os.path.abspath(os.curdir))
+    print(os.listdir('sections'))
+    validate.validate(data, validate.SCHEMA_NAME)
