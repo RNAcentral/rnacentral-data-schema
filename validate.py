@@ -5,6 +5,7 @@ import json
 
 import click
 import jsonschema as js
+# import jsonref as jr
 
 
 HERE = os.path.abspath(os.path.dirname(__file__))
@@ -51,7 +52,9 @@ def validate_id_format(data):
     for entry in data['data']:
         primary_id = entry['primaryId']
         db, _ = primary_id.split(':', 1)
-        assert db == expected, "Expected %s to start with %s" % (primary_id, expected)
+        if db != expected:
+            msg = "Expected %s to start with %s" % (primary_id, expected)
+            raise js.ValidationError(msg)
 
         gene_id = entry.get('gene', {}).get('geneId', None)
         if gene_id:
@@ -69,7 +72,7 @@ def validate(data, schema_path, sections_path):
         data,
         schema,
         format_checker=js.FormatChecker(),
-        resolver=js.RefResolver(base_uri=base, referrer=schema_path),
+        resolver=js.RefResolver(base, None),
     )
     validate_secondary_structure(data)
     validate_is_known_global_ids(data)
