@@ -27,6 +27,10 @@
                         "type": "string",
                         "description": "The name of this sequence."
                 },
+                "description": {
+                        "type": "string",
+                        "description": "An informative human readable description. If not provided then it will be generated using the name and species information."
+                },
                 "version": {
                         "description": "The version of this sequence, if any"
                 },
