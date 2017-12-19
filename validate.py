@@ -9,6 +9,7 @@ import jsonschema as js
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 SECTIONS = os.path.join(HERE, 'sections')
+SCHEMA_NAME = 'rnacentral-schema.json'
 
 
 def validate_secondary_structure(data):
@@ -34,6 +35,15 @@ def validate_is_known_global_ids(data):
             assert name in known, "Xref to unknown db: %s" % name
 
 
+# Not clear if this is actually needed.
+def validate_trna_annotations(data):
+    for entry in data['data']:
+        isoType = entry.get('additionalAnnotations', {}).get('isoType', None)
+        anticodon = entry.get('sequenceFeatures', {}).get('anticodon', None)
+        if isoType or anticodon:
+            assert entry['soTermId'] == 'SO:0000253'
+
+
 # Unsure if we should require this, maybe make it an option? I will leave the
 # code here for now.
 def validate_id_format(data):
@@ -49,9 +59,26 @@ def validate_id_format(data):
             assert gene_db == expected
 
 
+def validate(data, schema_path, sections_path):
+
+    with open(schema_path, 'rb') as raw:
+        schema = json.load(raw)
+
+    base = 'file://%s/' % sections_path
+    js.validate(
+        data,
+        schema,
+        format_checker=js.FormatChecker(),
+        resolver=js.RefResolver(base_uri=base, referrer=schema_path),
+    )
+    validate_secondary_structure(data)
+    validate_is_known_global_ids(data)
+    validate_trna_annotations(data)
+
+
 @click.command()
 @click.argument('filename')
-@click.option('--schema', default='rnacentral-schema.json',
+@click.option('--schema', default=SCHEMA_NAME,
               help='Filename of the schema to use')
 @click.option('--sections', default=SECTIONS,
               help='Directory where schema parts are kept')
@@ -59,21 +86,7 @@ def main(filename, schema=None, sections=None):
     with open(filename, 'rb') as raw:
         data = json.load(raw)
 
-    with open(schema, 'rb') as raw:
-        schema_data = json.load(raw)
-
-    sections = os.path.abspath(sections)
-    base = 'file://%s/' % sections
-    file_resolver = js.RefResolver(base_uri=base, referrer=schema)
-
-    js.validate(
-        data,
-        schema_data,
-        format_checker=js.FormatChecker(),
-        resolver=file_resolver,
-    )
-    validate_secondary_structure(data)
-    validate_is_known_global_ids(data)
+    validate(data, schema, os.path.abspath(sections))
 
 
 if __name__ == '__main__':
