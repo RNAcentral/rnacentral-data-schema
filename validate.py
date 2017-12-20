@@ -31,7 +31,7 @@ def validate_is_known_global_ids(data):
             name, _ = gene_id.split(':', 1)
             assert name in known, "Unknown database: %s" % name
 
-        for global_id in entry['crossReferenceIds']:
+        for global_id in entry.get('crossReferenceIds', []):
             name, _ = global_id.split(':', 1)
             assert name in known, "Xref to unknown db: %s" % name
 
