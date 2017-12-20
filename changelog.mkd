@@ -13,3 +13,4 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
   (https://github.com/RNAcentral/rnacentral-data-schema/issues/2)
 - Automatically test all example files
 - Made geneId required for genes.
+- Limit publication references to doi's and pm Ids
