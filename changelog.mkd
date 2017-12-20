@@ -12,8 +12,9 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added a description field to the schema
   (https://github.com/RNAcentral/rnacentral-data-schema/issues/2)
 - Automatically test all example files
-- Made geneId required for genes.
+- Add examples for mirBase, LNCipedia and a minimal example
 
 ### Changed
 - Allow colons in ids.
 - Limit publication references to doi's and pm Ids
+- Made geneId required for genes.
