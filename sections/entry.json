@@ -71,7 +71,10 @@
                         "description": "List of references to associate with this sequence.",
                         "type": "array",
                         "items": {
-                                "$ref": "publication.json#/properties/pubMedId"
+                                "anyOf": [
+                                        { "$ref": "publications.json#/properties/pubMedId" },
+                                        { "$ref": "publications.json#/properties/doi" }
+                                ]
                         },
                         "uniqueItems": true
                 },

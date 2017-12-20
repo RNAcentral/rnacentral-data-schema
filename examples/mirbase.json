@@ -1,0 +1,22 @@
+{
+        "data": [{
+                "primaryId": "MIRBASE:MIMAT0000062",
+                "taxonId": "NCBITaxon:9606",
+                "soTermId": "SO:0000276",
+                "sequence": "TGAGGTAGTAGGTTGTATAGTT",
+                "name": "microRNA hsa-let-7a-5p",
+                "description": "Homo sapiens let-7a-1 stem-loop",
+                "url": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=MI0000060",
+                "version": "1",
+                "gene": {"geneId": "MIRBASE:MIPF0000002", "symbol": "let-7"},
+                "additionalAnnotations": {
+                        "precursorSequenceId": "MIRBASE:MI0000060"
+                }
+        }],
+        "metaData": {
+                "dateProduced": "2017-11-20T22:19:12+01:00",
+                "dataProvider": "MIRBASE",
+                "release": "2.0",
+                "schemaVersion": "0.0.1"
+        }
+}

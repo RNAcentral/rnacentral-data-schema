@@ -19,7 +19,18 @@
                                 "strand": "+"
                         }]
                 }],
-                "url": "http://flybase.org/reports/FBgn0267497.html"
+                "url": "http://flybase.org/reports/FBgn0267497.html",
+                "publications": [
+                        "PMID:11679670",
+                        "PMID:15183728",
+                        "PMID:12554860",
+                        "PMID:14573789",
+                        "PMID:15325244",
+                        "PMID:17604727",
+                        "PMID:17616659",
+                        "PMID:17989717",
+                        "PMID:20158877"
+                ]
         }],
         "metaData": {
                 "dateProduced": "2017-11-20T22:19:12+01:00",
