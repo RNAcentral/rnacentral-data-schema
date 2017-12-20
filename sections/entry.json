@@ -9,7 +9,7 @@
         "properties": {
                 "primaryId": {
                         "$ref" : "global-id.json#/properties/globalId",
-                        "description": "The prefixed primary (MOD) ID for an entity. For internal AGR use, e.g. FB:FBgn0003301, MGI:87917."
+                        "description": "The prefixed primary (MOD) ID for an entity. For internal use, e.g. FB:FBgn0003301, MGI:87917."
                 },
                 "taxonId": {
                         "$ref" : "global-id.json#/properties/globalId",
@@ -35,18 +35,7 @@
                         "description": "The version of this sequence, if any"
                 },
                 "gene": {
-                        "symbol": {
-                                "type": "string",
-                                "description": "The gene symbol for this entry."
-                        },
-                        "synonyms": {
-                                "type": "array",
-                                "items": {
-                                        "type": "string"
-                                },
-                                "uniqueItems": true,
-                                "description": "A list of other symbols for the gene"
-                        }
+                        "$ref": "gene.json#"
                 },
                 "crossReferenceIds": {
                         "description":"Collection holding a limited set (for now) of database cross references for each gene.  That set is defined in geneCrossReferences.json dataSoruce enumeration.  NCBI GENE means just the NCBI Gene reference.  UniProtKB is swissprot and trembl.  Ensembl is just the GENE id for now (not transcript nor protein).",

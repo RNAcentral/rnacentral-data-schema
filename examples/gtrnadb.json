@@ -7,6 +7,7 @@
                 "name": " tRNA-Ala (CGC)",
                 "version": "1",
                 "gene": {
+                        "geneId": "GTRNADB:tRNA-Ala-CGC",
                         "symbol": "tRNA-Ala-CGC-1-1"
                 },
                 "genomeLocations": [{

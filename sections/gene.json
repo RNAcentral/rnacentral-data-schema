@@ -1,0 +1,27 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "RNAcentral Entry object",
+        "description": "A simple representation of genes for RNAcentral",
+        "id": "gene.json#",
+        "type": "object",
+        "required": ["geneId"],
+        "additionalProperties": false,
+        "properties": {
+                "geneId": {
+                        "$ref" : "global-id.json#/properties/globalId",
+                        "description": "The prefixed primary (MOD) ID for a gene. For internal use, e.g. FB:FBgn0003301, MGI:87917."
+                },
+                "symbol": {
+                        "type": "string",
+                        "description": "The gene symbol for this entry."
+                },
+                "synonyms": {
+                        "type": "array",
+                        "items": {
+                                "type": "string"
+                        },
+                        "uniqueItems": true,
+                        "description": "A list of other symbols for the gene"
+                }
+        }
+}
