@@ -15,6 +15,19 @@
                         "type": "string",
                         "description": "The gene symbol for this entry."
                 },
+                "name": {
+                        "type": "string",
+                        "description": "A name of this gene. This should be a human readable name."
+                },
+                "locusTag": {
+                        "type": "string",
+                        "description": "The locus tag"
+                },
+                "url": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "The url for this gene. Ideally this is in the expert database, but could be a reference to a different site if desired."
+                },
                 "synonyms": {
                         "type": "array",
                         "items": {

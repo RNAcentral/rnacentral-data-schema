@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
   (https://github.com/RNAcentral/rnacentral-data-schema/issues/2)
 - Automatically test all example files
 - Add examples for mirBase, LNCipedia and a minimal example
+- Added a locusTag, name, and url fields to gene
 
 ### Changed
 - Allow colons in ids.
