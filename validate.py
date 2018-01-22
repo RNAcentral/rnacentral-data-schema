@@ -92,6 +92,17 @@ def validate_can_produce_name(data):
             raise ValueError("No name for %s", ncrna['primaryId'])
 
 
+def validate_coordinate_direction(data):
+    for ncrna in data['data']:
+        for location in ncrna.get('genomeLocations', []):
+            for exon in location['exons']:
+                if exon['strand'] == '+' or exon['strand'] == '.' or \
+                        exon['strand'] == '-':
+                    assert exon['startPosition'] < exon['endPosition']
+                else:
+                    raise ValueError("Shouldn't be here")
+
+
 def validate(data, schema_path, sections_path):
 
     with open(schema_path, 'r') as raw:
@@ -108,6 +119,7 @@ def validate(data, schema_path, sections_path):
     validate_is_known_global_ids(data)
     validate_trna_annotations(data)
     validate_can_produce_name(data)
+    validate_coordinate_direction(data)
 
 
 @click.command()
