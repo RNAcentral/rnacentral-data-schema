@@ -31,6 +31,18 @@
                         "type": "string",
                         "description": "An informative human readable description. If not provided then it will be generated using the name and species information."
                 },
+                "symbol": {
+                        "type": "string",
+                        "description": "The symbol for this ncRNA"
+                },
+                "symbolSynonyms": {
+                        "type": "array",
+                        "items": {
+                                "type": "string"
+                        },
+                        "uniqueItems": true,
+                        "description": "A list of other symbols for the ncRNA"
+                },
                 "version": {
                         "description": "The version of this sequence, if any"
                 },
