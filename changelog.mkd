@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added a `locusTag`, `name`, and `url` fields to gene
 - Added validation to check if a name for the transcript can be determined
 - Add `symbol` and `symbolSynonyms` to `sections/ncrna.json`
+- Add a section, `relatedSequences`, for generic related sequences
 
 ### Changed
 - Allow colons in ids.
@@ -24,3 +25,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Rename `sections/entry.json` to `sections/ncrna.json`
 - `name` is no longer required for ncRNA's
 - `version` is no longer required for ncRNA's
+
+
+### Removed
+- Remove section `precursorSequenceId` in favor of the `relatedSequences`
+  section

@@ -147,11 +147,15 @@
                                         "Trp",
                                         "Tyr"
                                 ]
-                        },
-                        "precursorSequenceId": {
-                                "description": "ID for the precursor sequence, if any, for this sequence. For example miRBase can use this to define the percusor sequence to a miRNA",
-                                "$ref" : "global-id.json#/properties/globalId"
                         }
+                },
+                "relatedSequences": {
+                        "description": "Information about related sequences, like precursors or targets",
+                        "type": "array",
+                        "items": {
+                                "$ref": "related-sequence.json#"
+                        },
+                        "uniqueItems": true
                 }
         }
 }

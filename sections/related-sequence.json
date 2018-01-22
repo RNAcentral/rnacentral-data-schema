@@ -1,0 +1,21 @@
+{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "title": "Related Sequence Information",
+        "description": "Information about a related sequence such as precursors, targets, etc",
+        "id": "related-sequence.json#",
+        "type": "object",
+        "required": ["sequenceId", "relationship"],
+        "additionalProperties": false,
+        "properties": {
+                "sequenceId": {
+                        "description": "Id for the related sequence. Ideally, this is something in RNAcentral as well.",
+                        "$ref" : "global-id.json#/properties/globalId"
+                },
+                "relationship": {
+                        "description": "The relationship between the related sequence and the primary sequence",
+                        "enum": [
+                                "precursor"
+                        ]
+                }
+        }
+}
