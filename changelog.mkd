@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added validation to check if a name for the transcript can be determined
 - Add `symbol` and `symbolSynonyms` to `sections/ncrna.json`
 - Add a section, `relatedSequences`, for generic related sequences
+- Add `matureProduct` as a type of related sequence
 
 ### Changed
 - Allow colons in ids.

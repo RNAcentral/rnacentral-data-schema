@@ -14,7 +14,8 @@
                 "relationship": {
                         "description": "The relationship between the related sequence and the primary sequence",
                         "enum": [
-                                "precursor"
+                                "precursor",
+                                "matureProduct"
                         ]
                 }
         }
