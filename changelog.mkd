@@ -23,3 +23,4 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Made `geneId` required for genes
 - Rename `sections/entry.json` to `sections/ncrna.json`
 - `name` is no longer required for ncRNA's
+- `version` is no longer required for ncRNA's

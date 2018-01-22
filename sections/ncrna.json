@@ -4,7 +4,7 @@
         "description": "A sequence to import to RNAcentral. These entries must not be pseudogenes or coding RNA transcripts.",
         "id": "ncrna.json#",
         "type": "object",
-        "required": ["primaryId", "taxonId", "soTermId", "sequence", "version", "url"],
+        "required": ["primaryId", "taxonId", "soTermId", "sequence", "url"],
         "additionalProperties": false,
         "properties": {
                 "primaryId": {
