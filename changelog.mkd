@@ -9,16 +9,16 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## Unreleased
 
 ### Added
-- Added a description field to the schema
-  (https://github.com/RNAcentral/rnacentral-data-schema/issues/2)
+- Added a `description` field to the schema
+  (<https://github.com/RNAcentral/rnacentral-data-schema/issues/2>)
 - Automatically test all example files
 - Add examples for mirBase, LNCipedia and a minimal example
-- Added a locusTag, name, and url fields to gene
-- Added validation to check if a name for the transcript can be determined.
+- Added a `locusTag`, `name`, and `url` fields to gene
+- Added validation to check if a name for the transcript can be determined
 
 ### Changed
 - Allow colons in ids.
-- Limit publication references to doi's and pm Ids
-- Made geneId required for genes.
-- Rename entry.json to ncrna.json
+- Limit publication references to DOI's and PubMed Ids
+- Made `geneId` required for genes
+- Rename `sections/entry.json` to `sections/ncrna.json`
 - `name` is no longer required for ncRNA's
