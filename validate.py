@@ -2,6 +2,7 @@
 
 import os
 import json
+import logging
 
 import click
 import jsonschema as js
@@ -63,6 +64,34 @@ def validate_id_format(data):
             assert gene_db == expected
 
 
+def validate_can_produce_name(data):
+    for ncrna in data['data']:
+        name = None
+        if 'description' in ncrna and ncrna['description']:
+            LOGGER.debug("Using transcript description for name of %s",
+                         ncrna['primaryId'])
+            name = ncrna['description']
+        if 'name' in ncrna and ncrna['name']:
+            LOGGER.debug("Using transcript name for name of %s",
+                         ncrna['primaryId'])
+            name = ncrna['name']
+        if 'gene' in ncrna:
+            gene = ncrna['gene']
+            if 'name' in gene:
+                LOGGER.debug("Using gene name for name of %s",
+                             ncrna['primaryId'])
+                name = gene['name']
+            if 'symbol' in gene:
+                LOGGER.debug("Using gene symbol for name of %s",
+                             ncrna['primaryId'])
+                name = gene['symbol']
+
+        if name:
+            LOGGER.debug("Using name %s for %s", name, ncrna['primaryId'])
+        else:
+            raise ValueError("No name for %s", ncrna['primaryId'])
+
+
 def validate(data, schema_path, sections_path):
 
     with open(schema_path, 'r') as raw:
@@ -78,6 +107,7 @@ def validate(data, schema_path, sections_path):
     validate_secondary_structure(data)
     validate_is_known_global_ids(data)
     validate_trna_annotations(data)
+    validate_can_produce_name(data)
 
 
 @click.command()

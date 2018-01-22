@@ -14,9 +14,11 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Automatically test all example files
 - Add examples for mirBase, LNCipedia and a minimal example
 - Added a locusTag, name, and url fields to gene
+- Added validation to check if a name for the transcript can be determined.
 
 ### Changed
 - Allow colons in ids.
 - Limit publication references to doi's and pm Ids
 - Made geneId required for genes.
 - Rename entry.json to ncrna.json
+- `name` is no longer required for ncRNA's
