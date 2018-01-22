@@ -106,7 +106,7 @@
                         },
                         "modifications": {
                                 "description": "List of the modifications in this sequence",
-                                "type": "list",
+                                "type": "array",
                                 "items": {
                                         "$ref": "modification.json#"
                                 },
