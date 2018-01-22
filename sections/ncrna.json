@@ -1,8 +1,8 @@
 {
         "$schema": "http://json-schema.org/draft-04/schema#",
-        "title": "RNAcentral Entry object",
-        "description": "A sequence to import to RNAcentral. These entry must not be pseudogenes and be non-coding RNA transcripts.",
-        "id": "entry.json#",
+        "title": "RNAcentral ncRNA object",
+        "description": "A sequence to import to RNAcentral. These entries must not be pseudogenes or coding RNA transcripts.",
+        "id": "ncrna.json#",
         "type": "object",
         "required": ["primaryId", "taxonId", "name", "soTermId", "sequence", "version", "url"],
         "additionalProperties": false,

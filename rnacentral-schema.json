@@ -1,7 +1,7 @@
 {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "title": "RNAcentral import file.",
-        "description": "A file of RNAcentral entry objects.",
+        "description": "A file of RNAcentral ncrna objects.",
         "id": "rnacentral-schema.json",
         "type": "object",
         "required": ["metaData", "data"],
@@ -12,9 +12,9 @@
                 },
                 "data": {
                         "type": "array",
-                        "description": "A list of RNAcentral entry objects.",
+                        "description": "A list of RNAcentral ncrna objects.",
                         "items": {
-                                "$ref" : "entry.json#"
+                                "$ref" : "ncrna.json#"
                         }
                 }
         }

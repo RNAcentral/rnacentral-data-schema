@@ -19,3 +19,4 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Allow colons in ids.
 - Limit publication references to doi's and pm Ids
 - Made geneId required for genes.
+- Rename entry.json to ncrna.json

@@ -11,13 +11,14 @@ import jsonschema as js
 HERE = os.path.abspath(os.path.dirname(__file__))
 SECTIONS = os.path.join(HERE, 'sections')
 SCHEMA_NAME = 'rnacentral-schema.json'
+LOGGER = logging.getLogger(__name__)
 
 
 def validate_secondary_structure(data):
-    for entry in data['data']:
-        if 'secondaryStructure' not in entry:
+    for ncrna in data['data']:
+        if 'secondaryStructure' not in ncrna:
             continue
-        assert(len(entry['secondaryStructure']) == len(entry['sequence']))
+        assert(len(ncrna['secondaryStructure']) == len(ncrna['sequence']))
 
 
 def validate_is_known_global_ids(data):
@@ -25,38 +26,38 @@ def validate_is_known_global_ids(data):
         known = json.load(raw)
         known = set(known["properties"]['dataProvider']['enum'])
 
-    for entry in data["data"]:
-        gene_id = entry.get('gene', {}).get('geneId', None)
+    for ncrna in data["data"]:
+        gene_id = ncrna.get('gene', {}).get('geneId', None)
         if gene_id:
             name, _ = gene_id.split(':', 1)
             assert name in known, "Unknown database: %s" % name
 
-        for global_id in entry.get('crossReferenceIds', []):
+        for global_id in ncrna.get('crossReferenceIds', []):
             name, _ = global_id.split(':', 1)
             assert name in known, "Xref to unknown db: %s" % name
 
 
 # Not clear if this is actually needed.
 def validate_trna_annotations(data):
-    for entry in data['data']:
-        isoType = entry.get('additionalAnnotations', {}).get('isoType', None)
-        anticodon = entry.get('sequenceFeatures', {}).get('anticodon', None)
+    for ncrna in data['data']:
+        isoType = ncrna.get('additionalAnnotations', {}).get('isoType', None)
+        anticodon = ncrna.get('sequenceFeatures', {}).get('anticodon', None)
         if isoType or anticodon:
-            assert entry['soTermId'] == 'SO:0000253'
+            assert ncrna['soTermId'] == 'SO:0000253'
 
 
 # Unsure if we should require this, maybe make it an option? I will leave the
 # code here for now.
 def validate_id_format(data):
     expected = data['metaData']['dataProvider']
-    for entry in data['data']:
-        primary_id = entry['primaryId']
+    for ncrna in data['data']:
+        primary_id = ncrna['primaryId']
         db, _ = primary_id.split(':', 1)
         if db != expected:
             msg = "Expected %s to start with %s" % (primary_id, expected)
             raise js.ValidationError(msg)
 
-        gene_id = entry.get('gene', {}).get('geneId', None)
+        gene_id = ncrna.get('gene', {}).get('geneId', None)
         if gene_id:
             gene_db = primary_id.split(':', 1)
             assert gene_db == expected
