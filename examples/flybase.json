@@ -17,8 +17,7 @@
                                 "url": "http://flybase.org/reports/FBgn0267497.html",
                                 "synonyms": [
                                         "CR45837"
-                                ],
-                                
+                                ]
                         },
                         "genomeLocations": [{
                                 "assembly": "BDGP6",
@@ -37,7 +36,7 @@
                                 "REFSEQ:NR_133553.1"
                         ]
                 },
-                
+
                 {
                         "primaryId": "FLYBASE:FBtr0083475",
                         "taxonId": "NCBITaxon:7227",
@@ -50,7 +49,7 @@
                         "gene": {
                                 "geneId": "FLYBASE:FBgn0051577",
                                 "symbol": "tRNA:Ala-AGC-1-1",
-                                "name": "transfer RNA:Alanine-AGC 1-1"
+                                "name": "transfer RNA:Alanine-AGC 1-1",
                                 "locusTag": "Dmel_CR31577",
                                 "url": "http://flybase.org/reports/FBgn0051577.html",
                                 "synonyms": [
@@ -62,8 +61,8 @@
                                         "tRNA:A:AGC:AE002708-d",
                                         "tRNA:CR31577",
                                         "tRNA[[Ala]]",
-                                        "transfer RNA:CR31577",
-                                ],
+                                        "transfer RNA:CR31577"
+                                ]
                         },
                         "genomeLocations": [{
                                 "assembly": "BDGP6",
@@ -92,7 +91,7 @@
                         "gene": {
                                 "geneId": "FLYBASE:FBgn0262463",
                                 "symbol": "mir-100",
-                                "name": "mir-100 stem loop"
+                                "name": "mir-100 stem loop",
                                 "locusTag": "Dmel_CR43044",
                                 "url": "http://flybase.org/reports/FBgn0262463.html",
                                 "synonyms": [
@@ -101,8 +100,8 @@
                                         "Dme-miR-100",
                                         "dme-miR-100",
                                         "dme-mir-100",
-                                        "miR-100",
-                                ],
+                                        "miR-100"
+                                ]
                         },
                         "genomeLocations": [{
                                 "assembly": "BDGP6",
@@ -141,7 +140,7 @@
                                 "url": "http://flybase.org/reports/FBgn0086036.html",
                                 "synonyms": [
                                         "CR34665",
-                                        "Me18S-Am934",
+                                        "Me18S-Am934"
                                 ]
                         },
                         "genomeLocations": [{
@@ -171,7 +170,7 @@
                                 "geneId": "FLYBASE:FBgn0267666",
                                 "symbol": "CR46004",
                                 "locusTag": "Dmel_CR46004",
-                                "url": "http://flybase.org/reports/FBgn0267666.html",
+                                "url": "http://flybase.org/reports/FBgn0267666.html"
                         },
                         "genomeLocations": [{
                                 "assembly": "BDGP6",
