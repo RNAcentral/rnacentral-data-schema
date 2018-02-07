@@ -5,9 +5,9 @@ based off [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
 
-## Unreleased
-
+## [0.2.0] - 2018-02-07
 ### Added
 - Added a `description` field to the schema
   (<https://github.com/RNAcentral/rnacentral-data-schema/issues/2>)
@@ -27,7 +27,6 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Rename `sections/entry.json` to `sections/ncrna.json`
 - `name` is no longer required for ncRNA's
 - `version` is no longer required for ncRNA's
-
 
 ### Removed
 - Remove section `precursorSequenceId` in favor of the `relatedSequences`

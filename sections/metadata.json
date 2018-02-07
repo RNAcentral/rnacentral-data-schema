@@ -30,7 +30,8 @@
                 "schemaVersion": {
                         "description": "The schema version this file follows",
                         "enum": [
-                                "0.0.1"
+                                "0.1.0",
+                                "0.2.0"
                         ]
                 }
         }
