@@ -1,18 +1,86 @@
 {
-        "data": [{
-                "primaryId": "MIRBASE:MIMAT0000062",
-                "taxonId": "NCBITaxon:9606",
-                "soTermId": "SO:0000276",
-                "sequence": "TGAGGTAGTAGGTTGTATAGTT",
-                "name": "microRNA hsa-let-7a-5p",
-                "description": "Homo sapiens let-7a-1 stem-loop",
-                "url": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=MI0000060",
-                "version": "1",
-                "gene": {"geneId": "MIRBASE:MIPF0000002", "symbol": "let-7"},
-                "additionalAnnotations": {
-                        "precursorSequenceId": "MIRBASE:MI0000060"
+        "data": [
+                {
+                        "primaryId": "MIRBASE:MIMAT0000062",
+                        "taxonId": "NCBITaxon:9606",
+                        "symbol": "hsa-let-7a-5p",
+                        "symbolSynonyms": [
+                                "hsa-let-7a"
+                        ],
+                        "soTermId": "SO:0000276",
+                        "sequence": "TGAGGTAGTAGGTTGTATAGTT",
+                        "name": "microRNA hsa-let-7a-5p",
+                        "description": "Homo sapiens let-7a-1 stem-loop",
+                        "url": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=MI0000060",
+                        "version": "1",
+                        "gene": {
+                                "geneId": "MIRBASE:MIPF0000002",
+                                "symbol": "let-7",
+                                "url": "http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=MIPF0000002"
+                        },
+                        "relatedSequences": [
+                                { "sequenceId": "MIRBASE:MI0000060", "relationship": "precursor" }
+                        ],
+                        "publications": [
+                                "PMID:11679670",
+                                "PMID:12554860",
+                                "PMID:14573789",
+                                "PMID:15183728",
+                                "PMID:15325244",
+                                "PMID:17604727",
+                                "PMID:17616659",
+                                "PMID:17989717",
+                                "PMID:19015728",
+                                "PMID:20158877"
+                        ]
+                },
+                {
+                        "primaryId": "MIRBASE:MI0000060",
+                        "taxonId": "NCBITaxon:9606",
+                        "sequence": "TGGGATGAGGTAGTAGGTTGTATAGTTTTAGGGTCACACCCACCACTGGGAGATAACTATACAATCTACTGTCTTTCCTA",
+                        "soTermId": "SO:0001244",
+                        "symbol": "HGNC:MIRLET7A1",
+                        "symbolSynonyms": [
+                                "hsa-let-7a-1L"
+                        ],
+                        "name": "Homo sapiens let-7a-1 stem-loop",
+                        "url": "http://www.mirbase.org/cgi-bin/mirna_entry.pl?acc=MI0000060",
+                        "genomeLocations": [{
+                                "assembly": "GRCh38",
+                                "gca_accession": "GCA_000001405.25",
+                                "ucsc_accession": "hg38",
+                                "exons": [{
+                                        "INSDC_accession": "CM000671.2",
+                                        "chromosome": "9",
+                                        "startPosition": 94175957,
+                                        "endPosition": 94176036,
+                                        "strand": "+"
+                                }]
+                        }],
+                        "gene": {
+                                "geneId": "MIRBASE:MIPF0000002",
+                                "symbol": "let-7",
+                                "url": "http://www.mirbase.org/cgi-bin/mirna_summary.pl?fam=MIPF0000002"
+                        },
+                        "crossReferenceIds": [
+                                "RNACENTRAL:URS00005EB5B7/9606",
+                                "RFAM:RF00027",
+                                "HGNC:31476",
+                                "HGNC:MIRLET7A1"
+                        ],
+                        "publications": [
+                                "PMID:11679670",
+                                "PMID:15183728",
+                                "PMID:12554860",
+                                "PMID:14573789",
+                                "PMID:15325244",
+                                "PMID:17604727",
+                                "PMID:17616659",
+                                "PMID:17989717",
+                                "PMID:20158877"
+                        ]
                 }
-        }],
+        ],
         "metaData": {
                 "dateProduced": "2017-11-20T22:19:12+01:00",
                 "dataProvider": "MIRBASE",
