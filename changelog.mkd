@@ -6,6 +6,9 @@ based off [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Changed the meaning of `assembly` field to both be clearer as it's intended
+  purpose as well as allow for more general utility.
 
 ## [0.2.0] - 2018-02-07
 ### Added

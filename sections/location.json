@@ -6,9 +6,9 @@
         "type": "object",
         "required": ["assembly", "exons"],
         "properties": {
-                "assembly": { 
+                "assembly": {
                         "type" : "string",
-                        "description" : "The assembly on which the position and chromosome are based."
+                        "description" : "The assembly on which the position and chromosome are based. If possible this should be the Ensembl assembly, otherwise this should be an id for the assembly. The assembly may be specific to the database."
                 },
                 "gca_accession": {
                         "type" : "string",
@@ -48,4 +48,4 @@
                         }
                 }
         }
-} 
+}
