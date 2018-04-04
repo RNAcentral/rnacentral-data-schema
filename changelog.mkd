@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ### Changed
 - Changed the meaning of `assembly` field to both be clearer as it's intended
   purpose as well as allow for more general utility.
+- Made `INSC_accession` optional. This isn't always easy available and we can
+  probably get by without it.
 
 ## [0.2.0] - 2018-02-07
 ### Added
