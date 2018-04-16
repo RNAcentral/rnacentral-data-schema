@@ -35,7 +35,7 @@ def validate_is_known_global_ids(data):
 
         for global_id in ncrna.get('crossReferenceIds', []):
             name, _ = global_id.split(':', 1)
-            assert name in known, "Xref to unknown db: %s" % name
+            assert name.upper() in known, "Xref to unknown db: %s" % name
 
 
 # Not clear if this is actually needed.
