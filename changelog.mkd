@@ -12,6 +12,17 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Made `INSC_accession` optional. This isn't always easy available and we can
   probably get by without it.
 
+### Added
+- Added new databases for cross referencing:
+  - ENTREZGENE
+  - MICRORNA.ORG
+  - MIRDB
+  - TARGETMINER
+  - TARGETSCANFISH
+  - TARGETSCANFLY
+  - TARGETSCANVERT
+  - TARGETSCANWORM
+
 ## [0.2.0] - 2018-02-07
 ### Added
 - Added a `description` field to the schema
