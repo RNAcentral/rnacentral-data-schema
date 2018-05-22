@@ -17,6 +17,24 @@
                                 "precursor",
                                 "matureProduct"
                         ]
+                },
+                "coordinates": {
+                        "type": "array",
+                        "description": "The coordinates of this sequence in the related sequence",
+                        "items": {
+                                "type": "object",
+                                "required": ["startPosition", "endPosition"],
+                                "properties": {
+                                        "startPosition":{
+                                                "type": "number",
+                                                "description": "the start position of the location."
+                                        },
+                                        "endPosition":{
+                                                "type": "number",
+                                                "description": "the end position of the location."
+                                        }
+                                }
+                        }
                 }
         }
 }
