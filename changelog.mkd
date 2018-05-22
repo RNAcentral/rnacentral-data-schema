@@ -13,6 +13,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
   probably get by without it.
 - Made the validation of the database name case insensitive.
 - Do not required `geneId` in the `gene` object.
+- Altered sequence constraint to allow for up to 10% of the nucleotides to be
+  uncertain. This reflects the internal constraints on RNAcentral data.
 
 ### Added
 - Added new databases for cross referencing:

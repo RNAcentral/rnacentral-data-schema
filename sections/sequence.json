@@ -9,7 +9,7 @@
                 "sequence": {
                         "description": "A DNA sequence",
                         "type" : "string",
-                        "pattern" : "^[ACGTN]+$"
+                        "pattern" : "^[ACGTYRNSMWBK]+$"
                 }
         }
 }
