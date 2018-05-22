@@ -4,7 +4,6 @@
         "description": "A simple representation of genes for RNAcentral",
         "id": "gene.json#",
         "type": "object",
-        "required": ["geneId"],
         "additionalProperties": false,
         "properties": {
                 "geneId": {

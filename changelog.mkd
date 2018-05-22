@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Made `INSC_accession` optional. This isn't always easy available and we can
   probably get by without it.
 - Made the validation of the database name case insensitive.
+- Do not required `geneId` in the `gene` object.
 
 ### Added
 - Added new databases for cross referencing:
