@@ -25,9 +25,6 @@ import validate as val
     ('ACNAAABAAG', False),
 ])
 def test_can_detect_bad_sequences(sequence, expected):
-    data = {'data': [{'sequence': sequence}]}
-    if not expected:
-        with pytest.raises(ValueError):
-            val.validate_acceptable_uncertainty(data)
-    else:
-        assert val.validate_acceptable_uncertainty(data)
+    data = {'sequence': sequence}
+    result = bool(list(val.acceptable_uncertainty(data)))
+    assert (not result) == expected

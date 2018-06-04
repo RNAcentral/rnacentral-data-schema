@@ -17,9 +17,9 @@ limitations under the License.
 import os
 import json
 import logging
-from collections import Counter
 
 import click
+import requests
 import jsonschema as js
 # import jsonref as jr
 
@@ -29,105 +29,137 @@ SECTIONS = os.path.join(HERE, 'sections')
 SCHEMA_NAME = 'rnacentral-schema.json'
 LOGGER = logging.getLogger(__name__)
 
-
-def validate_secondary_structure(data):
-    for ncrna in data['data']:
-        if 'secondaryStructure' not in ncrna:
-            continue
-        assert(len(ncrna['secondaryStructure']) == len(ncrna['sequence']))
+TAX_URL = 'https://www.ebi.ac.uk/ena/data/taxonomy/v1/taxon/tax-id/{taxon_id}'
 
 
-def validate_is_known_global_ids(data):
-    with open('sections/data-provider.json', 'r') as raw:
-        known = json.load(raw)
-        known = set(known["properties"]['dataProvider']['enum'])
+class ExtendedValidator(js.validators.Draft4Validator):
+    def __init__(self, schema, extra, *args, **kwargs):
+        self.extra_validators = extra
+        super(ExtendedValidator, self).__init__(schema, *args, **kwargs)
 
-    for ncrna in data["data"]:
+    def iter_errors(self, instance, _schema=None):
+        parent = super(ExtendedValidator, self)
+        for error in parent.iter_errors(instance, _schema=_schema):
+            yield error
+
+        if isinstance(instance, dict) and 'data' in instance:
+            for ncrna in instance['data']:
+                for extra in self.extra_validators:
+                    for error in extra(ncrna):
+                        # Copied from the jsonschema validators
+                        error._set(
+                            validator=self,
+                            validator_value=ncrna,
+                            instance=instance,
+                            schema=None
+                        )
+                        yield error
+
+
+class KnownGlobalIdValidator(object):
+    def __init__(self):
+        with open('sections/data-provider.json', 'r') as raw:
+            known = json.load(raw)
+            self.known = set(known["properties"]['dataProvider']['enum'])
+
+    def __call__(self, ncrna):
         gene_id = ncrna.get('gene', {}).get('geneId', None)
         if gene_id:
             name, _ = gene_id.split(':', 1)
-            assert name in known, "Unknown database: %s" % name
+            if name not in self.known:
+                yield js.ValidationError("Unknown database: %s" % name)
 
         for global_id in ncrna.get('crossReferenceIds', []):
             name, _ = global_id.split(':', 1)
-            assert name.upper() in known, "Xref to unknown db: %s" % name
+            if name.upper() not in self.known:
+                yield js.ValidationError("Xref to unknown db: %s" % name)
+
+
+class ActiveTaxonIdValidator(object):
+    def __init__(self):
+        self.seen = set()
+        self.failed = set()
+
+    def __call__(self, ncrna):
+        taxon_id = int(ncrna['taxonId'].split(':', 1)[1])
+        if taxon_id in self.seen:
+            return
+
+        if taxon_id in self.failed:
+            yield js.ValidationError("Invalid Taxon id: %s" % taxon_id)
+        else:
+            try:
+                response = requests.get(TAX_URL.format(taxon_id=taxon_id))
+                response.raise_for_status()
+                self.seen.add(taxon_id)
+            except requests.HTTPError:
+                self.failed.add(taxon_id)
+                yield js.ValidationError("Invalid Taxon id: %s" % taxon_id)
+
+
+def secondary_structure(ncrna):
+    if 'secondaryStructure' not in ncrna:
+        return
+
+    if len(ncrna['secondaryStructure']) != len(ncrna['sequence']):
+        yield js.ValidationError("Secondary structure wrong size")
 
 
 # Not clear if this is actually needed.
-def validate_trna_annotations(data):
-    for ncrna in data['data']:
-        isoType = ncrna.get('additionalAnnotations', {}).get('isoType', None)
-        anticodon = ncrna.get('sequenceFeatures', {}).get('anticodon', None)
-        if isoType or anticodon:
-            assert ncrna['soTermId'] == 'SO:0000253'
+def trna_annotations(ncrna):
+    isoType = ncrna.get('additionalAnnotations', {}).get('isoType', None)
+    anticodon = ncrna.get('sequenceFeatures', {}).get('anticodon', None)
+    if isoType or anticodon:
+        if ncrna['soTermId'] != 'SO:0000253':
+            yield js.ValidationError("tRNA has the wrong SO term")
 
 
-# Unsure if we should require this, maybe make it an option? I will leave the
-# code here for now.
-def validate_id_format(data):
-    expected = data['metaData']['dataProvider']
-    for ncrna in data['data']:
-        primary_id = ncrna['primaryId']
-        db, _ = primary_id.split(':', 1)
-        if db != expected:
-            msg = "Expected %s to start with %s" % (primary_id, expected)
-            raise js.ValidationError(msg)
-
-        gene_id = ncrna.get('gene', {}).get('geneId', None)
-        if gene_id:
-            gene_db = primary_id.split(':', 1)
-            assert gene_db == expected
-
-
-def validate_can_produce_name(data):
-    for ncrna in data['data']:
-        name = None
-        if 'description' in ncrna and ncrna['description']:
-            LOGGER.debug("Using transcript description for name of %s",
+def can_produce_name(ncrna):
+    name = None
+    if 'description' in ncrna and ncrna['description']:
+        LOGGER.debug("Using transcript description for name of %s",
+                     ncrna['primaryId'])
+        name = ncrna['description']
+    if 'name' in ncrna and ncrna['name']:
+        LOGGER.debug("Using transcript name for name of %s",
+                     ncrna['primaryId'])
+        name = ncrna['name']
+    if 'gene' in ncrna:
+        gene = ncrna['gene']
+        if 'name' in gene:
+            LOGGER.debug("Using gene name for name of %s",
                          ncrna['primaryId'])
-            name = ncrna['description']
-        if 'name' in ncrna and ncrna['name']:
-            LOGGER.debug("Using transcript name for name of %s",
+            name = gene['name']
+        if 'symbol' in gene:
+            LOGGER.debug("Using gene symbol for name of %s",
                          ncrna['primaryId'])
-            name = ncrna['name']
-        if 'gene' in ncrna:
-            gene = ncrna['gene']
-            if 'name' in gene:
-                LOGGER.debug("Using gene name for name of %s",
-                             ncrna['primaryId'])
-                name = gene['name']
-            if 'symbol' in gene:
-                LOGGER.debug("Using gene symbol for name of %s",
-                             ncrna['primaryId'])
-                name = gene['symbol']
+            name = gene['symbol']
 
-        if name:
-            LOGGER.debug("Using name %s for %s", name, ncrna['primaryId'])
-        else:
-            raise ValueError("No name for %s", ncrna['primaryId'])
+    if name:
+        LOGGER.debug("Using name %s for %s", name, ncrna['primaryId'])
+    else:
+        yield js.ValidationError("No name for %s", ncrna['primaryId'])
 
 
-def validate_coordinate_direction(data):
-    for ncrna in data['data']:
-        for location in ncrna.get('genomeLocations', []):
-            for exon in location['exons']:
-                if exon['strand'] == '+' or exon['strand'] == '.' or \
-                        exon['strand'] == '-':
-                    assert exon['startPosition'] < exon['endPosition']
-                else:
-                    raise ValueError("Shouldn't be here")
+def coordinate_direction(ncrna):
+    for location in ncrna.get('genomeLocations', []):
+        for exon in location['exons']:
+            if exon['strand'] == '+' or exon['strand'] == '.' or \
+                    exon['strand'] == '-':
+                if not exon['startPosition'] < exon['endPosition']:
+                    yield js.ValidationError("Start must be < end: %s")
+            else:
+                raise ValueError("Shouldn't be here")
 
 
-def validate_acceptable_uncertainty(data):
+def acceptable_uncertainty(ncrna):
     standard = set('ACGT')
-    for ncrna in data['data']:
-        sequence = ncrna['sequence']
-        total = float(len(ncrna['sequence']))
-        uncertainty = sum(1 for s in sequence if s not in standard)
-        if float(uncertainty) / total > 0.1:
-            raise ValueError("Sequence for %s has too much uncertainty (%f)" %
-                             (ncrna, uncertainty))
-    return True
+    sequence = ncrna['sequence']
+    total = float(len(ncrna['sequence']))
+    uncertainty = sum(1 for s in sequence if s not in standard)
+    if float(uncertainty) / total > 0.1:
+        yield js.ValidationError("Sequence for %s is too uncertain (%f)" %
+                                 (ncrna, uncertainty))
 
 
 def validate(data, schema_path, sections_path):
@@ -136,17 +168,26 @@ def validate(data, schema_path, sections_path):
         schema = json.load(raw)
 
     base = 'file://%s/' % sections_path
-    js.validate(
-        data,
+    validator = ExtendedValidator(
         schema,
+        [
+            acceptable_uncertainty,
+            coordinate_direction,
+            can_produce_name,
+            ActiveTaxonIdValidator(),
+            KnownGlobalIdValidator(),
+        ],
         format_checker=js.FormatChecker(),
         resolver=js.RefResolver(base, None),
     )
-    validate_secondary_structure(data)
-    validate_is_known_global_ids(data)
-    validate_trna_annotations(data)
-    validate_can_produce_name(data)
-    validate_coordinate_direction(data)
+
+    found = False
+    for error in validator.iter_errors(data):
+        found = True
+        print(error.message)
+
+    if found:
+        raise click.ClickException("Validation failed")
 
 
 @click.command()
