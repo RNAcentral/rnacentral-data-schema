@@ -11,6 +11,9 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ### Added
 - We now validate if the taxon ids are active or obsolete.
+- Added new type of related sequence, `target` to represent the binding target
+  of miRNA's and other sequences.
+- Add an example for TarBase import
 
 ## [0.3.0] - 2018-05-22
 ### Changed
