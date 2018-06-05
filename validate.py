@@ -17,6 +17,7 @@ limitations under the License.
 import os
 import json
 import logging
+from collections import Counter
 
 import click
 import requests
@@ -30,6 +31,10 @@ SCHEMA_NAME = 'rnacentral-schema.json'
 LOGGER = logging.getLogger(__name__)
 
 TAX_URL = 'https://www.ebi.ac.uk/ena/data/taxonomy/v1/taxon/tax-id/{taxon_id}'
+
+
+class ValidationWarning(js.ValidationError):
+    pass
 
 
 class ExtendedValidator(js.validators.Draft4Validator):
@@ -48,7 +53,7 @@ class ExtendedValidator(js.validators.Draft4Validator):
                     for error in extra(ncrna):
                         # Copied from the jsonschema validators
                         error._set(
-                            validator=self,
+                            validator=extra.__name__,
                             validator_value=ncrna,
                             instance=instance,
                             schema=None
@@ -158,8 +163,8 @@ def acceptable_uncertainty(ncrna):
     total = float(len(ncrna['sequence']))
     uncertainty = sum(1 for s in sequence if s not in standard)
     if float(uncertainty) / total > 0.1:
-        yield js.ValidationError("Sequence for %s is too uncertain (%f)" %
-                                 (ncrna, uncertainty))
+        yield ValidationWarning("Sequence for %s is too uncertain (%f)" %
+                                (ncrna, uncertainty))
 
 
 def validate(data, schema_path, sections_path):
@@ -182,12 +187,18 @@ def validate(data, schema_path, sections_path):
     )
 
     found = False
+    counts = Counter()
     for error in validator.iter_errors(data):
-        found = True
-        print(error.message)
+        counts[error.validator] += 1
+        if isinstance(error, ValidationWarning):
+            LOGGER.warning(error.message)
+        else:
+            found = True
+            LOGGER.error(error.message)
 
     if found:
-        raise click.ClickException("Validation failed")
+        summary = ', '.join('%s: %s' % (k, v) for k, v in counts.items())
+        raise click.ClickException("Validation failed: %s" % summary)
 
 
 @click.command()
@@ -204,4 +215,10 @@ def main(filename, schema=None, sections=None):
 
 
 if __name__ == '__main__':
+
+    logging.basicConfig(
+        format='%(levelname)s: %(message)s',
+        level=logging.WARNING,
+    )
+
     main()
