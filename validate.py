@@ -50,7 +50,20 @@ class ExtendedValidator(js.validators.Draft4Validator):
         if isinstance(instance, dict) and 'data' in instance:
             for ncrna in instance['data']:
                 for extra in self.extra_validators:
-                    for error in extra(ncrna):
+                    try:
+                        errors = extra(ncrna)
+                    except:
+                        error = js.ValidatorError("Could not run %s" %
+                                                  extra.__name__)
+                        error._set(
+                            validator=extra.__name__,
+                            validator_value=ncrna,
+                            instance=instance,
+                            schema=None
+                        )
+                        errors = [error]
+
+                    for error in errors:
                         # Copied from the jsonschema validators
                         error._set(
                             validator=extra.__name__,
