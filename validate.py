@@ -211,6 +211,7 @@ def main(filename, schema=None, sections=None):
     with open(filename, 'r') as raw:
         data = json.load(raw)
 
+    data['metaData']["dataProvider"] = data['metaData']["dataProvider"].upper()
     validate(data, schema, os.path.abspath(sections))
 
 
