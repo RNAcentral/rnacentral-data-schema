@@ -143,7 +143,7 @@ def can_produce_name(ncrna):
     if name:
         LOGGER.debug("Using name %s for %s", name, ncrna['primaryId'])
     else:
-        yield js.ValidationError("No name for %s", ncrna['primaryId'])
+        yield js.ValidationError("No name for %s" % ncrna['primaryId'])
 
 
 def coordinate_direction(ncrna):
@@ -163,8 +163,8 @@ def acceptable_uncertainty(ncrna):
     total = float(len(ncrna['sequence']))
     uncertainty = sum(1 for s in sequence if s not in standard)
     if float(uncertainty) / total > 0.1:
-        yield ValidationWarning("Sequence for %s is too uncertain (%f)" %
-                                (ncrna, uncertainty))
+        yield ValidationWarning("Sequence for %s is too uncertain (%f/%i)" %
+                                (ncrna, uncertainty, total))
 
 
 def validate(data, schema_path, sections_path):
