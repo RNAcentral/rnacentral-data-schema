@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ## Unreleased
 ### Changed
 - Altered the validation script to display all errors.
+- Improved descriptions of sequence id fields to be clearer.
 
 ### Added
 - We now validate if the taxon ids are active or obsolete.

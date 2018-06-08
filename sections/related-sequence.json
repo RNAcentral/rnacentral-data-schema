@@ -8,7 +8,7 @@
         "additionalProperties": false,
         "properties": {
                 "sequenceId": {
-                        "description": "Id for the related sequence. Ideally, this is something in RNAcentral as well.",
+                        "description": "The prefixed primary (MOD) ID for an entity.. Ideally, this is something in RNAcentral as well.",
                         "$ref" : "global-id.json#/properties/globalId"
                 },
                 "relationship": {
