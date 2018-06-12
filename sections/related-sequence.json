@@ -26,13 +26,28 @@
                                 "type": "object",
                                 "required": ["startPosition", "endPosition"],
                                 "properties": {
-                                        "startPosition":{
+                                        "startPosition": {
                                                 "type": "number",
                                                 "description": "the start position of the location."
                                         },
-                                        "endPosition":{
+                                        "endPosition": {
                                                 "type": "number",
                                                 "description": "the end position of the location."
+                                        }
+                                }
+                        }
+                },
+                "evidence": {
+                        "type": "object",
+                        "description": "This section contains states the evidence for the given relationship. Currently this only supports listing the method names but may be more complex in the future.",
+                        "required": ["methods"],
+                        "additionalProperties": false,
+                        "properties": {
+                                "methods": {
+                                        "type": "array",
+                                        "description": "This is a list of the methods used to determine the relationship. The names should be meaningful to a person, but short like PAR-CLIP",
+                                        "items": {
+                                                "type": "string"
                                         }
                                 }
                         }
