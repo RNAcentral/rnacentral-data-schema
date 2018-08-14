@@ -455,6 +455,9 @@
                 "dateProduced": "2018-03-01T16:46:00+01:00",
                 "dataProvider": "TARBASE",
                 "release": "7.0",
-                "schemaVersion": "0.3.0"
+                "schemaVersion": "0.3.0",
+                "publications": [
+                        "PMID:25416803"
+                ]
         }
 }

@@ -38,7 +38,11 @@
                 "dateProduced": "2017-11-20T22:19:12+01:00",
                 "dataProvider": "GTRNADB",
                 "release": "2.0",
-                "schemaVersion": "0.2.0"
+                "schemaVersion": "0.2.0",
+                "publications": [
+                        "PMID:18984615",
+                        "PMID:26673694"
+                ]
         }
 }
 

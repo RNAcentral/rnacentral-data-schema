@@ -204,6 +204,9 @@
                 "dateProduced": "2017-11-20T22:19:12+01:00",
                 "dataProvider": "FLYBASE",
                 "release": "FB2017_06",
-                "schemaVersion": "0.2.0"
+                "schemaVersion": "0.2.0",
+                "publications": [
+                        "PMID:27799470"
+                ]
         }
 }

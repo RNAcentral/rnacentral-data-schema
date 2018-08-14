@@ -15,7 +15,7 @@
                 },
                 "doi": {
                         "type": "string",
-                        "pattern": "^doi:.+$"
+                        "pattern": "^DOI:.+$"
                 }
         },
         "anyOf": [{"required": ["modPublicationId"]},{"required": ["pubMedId"]}]

@@ -85,6 +85,12 @@
                 "dateProduced": "2017-11-20T22:19:12+01:00",
                 "dataProvider": "MIRBASE",
                 "release": "2.0",
-                "schemaVersion": "0.2.0"
+                "schemaVersion": "0.2.0",
+                "publications": [
+                        "DOI:10.1093/nar/gkt1181",
+                        "DOI:10.1093/nar/gkq1027",
+                        "DOI:10.1093/nar/gkm952",
+                        "DOI:10.1093/nar/gkj112"
+                ]
         }
 }
