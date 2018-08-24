@@ -32,6 +32,8 @@ LOGGER = logging.getLogger(__name__)
 
 TAX_URL = 'https://www.ebi.ac.uk/ena/data/taxonomy/v1/taxon/tax-id/{taxon_id}'
 
+PMID_URL = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:{pmid}+AND+SRC:MED&format=json'
+
 
 class ValidationWarning(js.ValidationError):
     pass
@@ -65,8 +67,13 @@ class ExtendedValidator(js.validators.Draft4Validator):
 
                     for error in errors:
                         # Copied from the jsonschema validators
+                        try:
+                            name = extra.__name__
+                        except AttributeError:
+                            name = extra.__class__.__name__
+
                         error._set(
-                            validator=extra.__name__,
+                            validator=name,
                             validator_value=ncrna,
                             instance=instance,
                             schema=None
@@ -113,6 +120,29 @@ class ActiveTaxonIdValidator(object):
             except requests.HTTPError:
                 self.failed.add(taxon_id)
                 yield js.ValidationError("Invalid Taxon id: %s" % taxon_id)
+
+
+class KnownPmidValidator(object):
+    def __init__(self):
+        self.seen = set()
+        self.failed = set()
+
+    def __call__(self, ncrna):
+        for pub_id in ncrna.get('publications', []):
+            db, db_id = pub_id.split(':', 1)
+            if db_id in seen:
+                continue
+
+            if db != 'PUBMED':
+                continue
+
+            try:
+                requests.get(PMID_URL.format(pmid=db_id))
+                response.rase_for_status()
+                self.seen.add(db_id)
+            except requests.HTTPError:
+                self.failed.add(db_id)
+                yield js.ValidationError("Invalid PubMed id: %s" % db_id)
 
 
 def secondary_structure(ncrna):

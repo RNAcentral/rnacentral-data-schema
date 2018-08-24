@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
   pattern.
 - Require metaData publications to be filled out.
 - Bug fix to re-enable secondary structure validation.
+- Bug fix validator to correctly get validator failure name.
 
 ### Added
 - We now validate if the taxon ids are active or obsolete.
