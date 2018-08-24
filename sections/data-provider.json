@@ -45,7 +45,8 @@
                                 "TARGETSCANVERT",
                                 "TARGETSCANWORM",
                                 "TMRNAWEBSITE",
-                                "WORMBASE"
+                                "WORMBASE",
+                                "ZWD"
                         ]
                 }
         }
