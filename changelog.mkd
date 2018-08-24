@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Changed doi reference pattern to start with `DOI:` to be consistent with PMID
   pattern.
 - Require metaData publications to be filled out.
+- Bug fix to re-enable secondary structure validation.
 
 ### Added
 - We now validate if the taxon ids are active or obsolete.

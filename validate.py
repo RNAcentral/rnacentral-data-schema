@@ -192,6 +192,7 @@ def validate(data, schema_path, sections_path):
             acceptable_uncertainty,
             coordinate_direction,
             can_produce_name,
+            secondary_structure,
             ActiveTaxonIdValidator(),
             KnownGlobalIdValidator(),
         ],
