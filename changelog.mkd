@@ -22,6 +22,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Add an example for TarBase import
 - Add an evidence section to relatedSequences, to store information about the
   evidence for the relationship between sequences.
+- Validate PubMed Ids as being active.
+- Added ZWC as a new database.
 
 ## [0.3.0] - 2018-05-22
 ### Changed

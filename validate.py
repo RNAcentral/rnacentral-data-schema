@@ -130,15 +130,23 @@ class KnownPmidValidator(object):
     def __call__(self, ncrna):
         for pub_id in ncrna.get('publications', []):
             db, db_id = pub_id.split(':', 1)
-            if db_id in seen:
+            if db_id in self.seen:
                 continue
 
-            if db != 'PUBMED':
+            if db_id in self.failed:
+                yield js.ValidationError("Invalid PubMed id: %s" % db_id)
+                continue
+
+            if db != 'PMID':
                 continue
 
             try:
-                requests.get(PMID_URL.format(pmid=db_id))
-                response.rase_for_status()
+                response = requests.get(PMID_URL.format(pmid=db_id))
+                response.raise_for_status()
+                data = response.json()
+                if data['hitCount'] == 0:
+                    raise requests.HTTPError("Not found")
+
                 self.seen.add(db_id)
             except requests.HTTPError:
                 self.failed.add(db_id)
@@ -225,6 +233,7 @@ def validate(data, schema_path, sections_path):
             secondary_structure,
             ActiveTaxonIdValidator(),
             KnownGlobalIdValidator(),
+            KnownPmidValidator(),
         ],
         format_checker=js.FormatChecker(),
         resolver=js.RefResolver(base, None),
