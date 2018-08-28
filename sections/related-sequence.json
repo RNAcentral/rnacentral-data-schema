@@ -16,7 +16,8 @@
                         "enum": [
                                 "precursor",
                                 "matureProduct",
-                                "target"
+                                "target_protein",
+                                "target_rna"
                         ]
                 },
                 "coordinates": {
