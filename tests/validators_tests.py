@@ -26,5 +26,6 @@ import validate as val
 ])
 def test_can_detect_bad_sequences(sequence, expected):
     data = {'sequence': sequence}
-    result = bool(list(val.acceptable_uncertainty(data)))
+    validator = val.AcceptableUncertaintyValidator()
+    result = bool(list(validator.validate_ncrna(data)))
     assert (not result) == expected

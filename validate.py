@@ -39,46 +39,65 @@ class ValidationWarning(js.ValidationError):
     pass
 
 
+class UnrunnableValidator(js.ValidationError):
+    pass
+
+
 class ExtendedValidator(js.validators.Draft4Validator):
     def __init__(self, schema, extra, *args, **kwargs):
         self.extra_validators = extra
         super(ExtendedValidator, self).__init__(schema, *args, **kwargs)
+
+    def update_error(self, instance, validator, item, error):
+        # Copied from the jsonschema validators
+        try:
+            name = validator.__name__
+        except AttributeError:
+            name = validator.__class__.__name__
+
+        error._set(
+            validator=name,
+            validator_value=item,
+            instance=instance,
+            schema=None
+        )
+        return error
+
+    def validate_metadata(self, instance):
+        for validator in self.extra_validators:
+            if not hasattr(validator, 'validate_metadata'):
+                continue
+            try:
+                value = instance['metaData']
+                for error in validator.validate_metadata(value):
+                    yield (validator, value, error)
+            except Exception as err:
+                yield (validator, value, UnrunnableValidator(err))
+
+    def validate_ncrnas(self, instance):
+        for ncrna in instance['data']:
+            for validator in self.extra_validators:
+                if not hasattr(validator, 'validate_ncrna'):
+                    continue
+                try:
+                    for error in validator.validate_ncrna(ncrna):
+                        yield (validator, ncrna, error)
+                except Exception as err:
+                    yield (validator, ncrna, UnrunnableValidator(err))
 
     def iter_errors(self, instance, _schema=None):
         parent = super(ExtendedValidator, self)
         for error in parent.iter_errors(instance, _schema=_schema):
             yield error
 
-        if isinstance(instance, dict) and 'data' in instance:
-            for ncrna in instance['data']:
-                for extra in self.extra_validators:
-                    try:
-                        errors = extra(ncrna)
-                    except:
-                        error = js.ValidatorError("Could not run %s" %
-                                                  extra.__name__)
-                        error._set(
-                            validator=extra.__name__,
-                            validator_value=ncrna,
-                            instance=instance,
-                            schema=None
-                        )
-                        errors = [error]
+        if isinstance(instance, dict):
+            if 'metaData' in instance:
+                for validator, value, error in self.validate_metadata(instance):
+                    yield self.update_error(instance, validator, value, error)
 
-                    for error in errors:
-                        # Copied from the jsonschema validators
-                        try:
-                            name = extra.__name__
-                        except AttributeError:
-                            name = extra.__class__.__name__
-
-                        error._set(
-                            validator=name,
-                            validator_value=ncrna,
-                            instance=instance,
-                            schema=None
-                        )
-                        yield error
+            if 'data' in instance:
+                for validator, value, error in self.validate_ncrnas(instance):
+                    yield self.update_error(instance, validator, value, error)
 
 
 class KnownGlobalIdValidator(object):
@@ -87,7 +106,7 @@ class KnownGlobalIdValidator(object):
             known = json.load(raw)
             self.known = set(known["properties"]['dataProvider']['enum'])
 
-    def __call__(self, ncrna):
+    def validate_ncrna(self, ncrna):
         gene_id = ncrna.get('gene', {}).get('geneId', None)
         if gene_id:
             name, _ = gene_id.split(':', 1)
@@ -105,7 +124,7 @@ class ActiveTaxonIdValidator(object):
         self.seen = set()
         self.failed = set()
 
-    def __call__(self, ncrna):
+    def validate_ncrna(self, ncrna):
         taxon_id = int(ncrna['taxonId'].split(':', 1)[1])
         if taxon_id in self.seen:
             return
@@ -122,100 +141,123 @@ class ActiveTaxonIdValidator(object):
                 yield js.ValidationError("Invalid Taxon id: %s" % taxon_id)
 
 
-class KnownPmidValidator(object):
+class PublicationValidator(object):
     def __init__(self):
         self.seen = set()
         self.failed = set()
+        self.requires_ncrna_publications = True
 
-    def __call__(self, ncrna):
-        for pub_id in ncrna.get('publications', []):
-            db, db_id = pub_id.split(':', 1)
-            if db_id in self.seen:
-                continue
+    def validate_pmid(self, pub_id):
+        db, db_id = pub_id.split(':', 1)
+        if db_id in self.seen:
+            return
 
-            if db_id in self.failed:
-                yield js.ValidationError("Invalid PubMed id: %s" % db_id)
-                continue
+        if db != 'PMID':
+            return
 
-            if db != 'PMID':
-                continue
+        if db_id in self.failed:
+            return js.ValidationError("Invalid PubMed id: %s" % db_id)
+        try:
+            response = requests.get(PMID_URL.format(pmid=db_id))
+            response.raise_for_status()
+            data = response.json()
+            if data['hitCount'] == 0:
+                raise requests.HTTPError("Not found")
+            self.seen.add(db_id)
+        except requests.HTTPError:
+            self.failed.add(db_id)
+            return js.ValidationError("Invalid PubMed id: %s" % db_id)
 
-            try:
-                response = requests.get(PMID_URL.format(pmid=db_id))
-                response.raise_for_status()
-                data = response.json()
-                if data['hitCount'] == 0:
-                    raise requests.HTTPError("Not found")
+    def validate_metadata(self, metadata):
+        publications = metadata.get('publications', [])
+        if not publications:
+            yield ValidationWarning("Databases should have a reference")
+        else:
+            self.requires_ncrna_publications = False
 
-                self.seen.add(db_id)
-            except requests.HTTPError:
-                self.failed.add(db_id)
-                yield js.ValidationError("Invalid PubMed id: %s" % db_id)
+        for pmid in publications:
+            error = self.validate_pmid(pmid)
+            if error:
+                yield error
+
+    def validate_ncrna(self, ncrna):
+        publications = ncrna.get('publications', [])
+        if not publications and self.requires_ncrna_publications:
+            yield js.ValidationError("Must have at least one reference")
+
+        for pub_id in publications:
+            error = self.validate_pmid(pub_id)
+            if error:
+                yield error
 
 
-def secondary_structure(ncrna):
-    if 'secondaryStructure' not in ncrna:
-        return
+class SecondaryStructureValidator(object):
+    def validate_ncrna(self, ncrna):
+        if 'secondaryStructure' not in ncrna:
+            return
 
-    if len(ncrna['secondaryStructure']) != len(ncrna['sequence']):
-        yield js.ValidationError("Secondary structure wrong size")
+        if len(ncrna['secondaryStructure']) != len(ncrna['sequence']):
+            yield js.ValidationError("Secondary structure wrong size")
 
 
 # Not clear if this is actually needed.
-def trna_annotations(ncrna):
-    isoType = ncrna.get('additionalAnnotations', {}).get('isoType', None)
-    anticodon = ncrna.get('sequenceFeatures', {}).get('anticodon', None)
-    if isoType or anticodon:
-        if ncrna['soTermId'] != 'SO:0000253':
-            yield js.ValidationError("tRNA has the wrong SO term")
+# def trna_annotations(ncrna):
+#     isoType = ncrna.get('additionalAnnotations', {}).get('isoType', None)
+#     anticodon = ncrna.get('sequenceFeatures', {}).get('anticodon', None)
+#     if isoType or anticodon:
+#         if ncrna['soTermId'] != 'SO:0000253':
+#             yield js.ValidationError("tRNA has the wrong SO term")
 
 
-def can_produce_name(ncrna):
-    name = None
-    if 'description' in ncrna and ncrna['description']:
-        LOGGER.debug("Using transcript description for name of %s",
-                     ncrna['primaryId'])
-        name = ncrna['description']
-    if 'name' in ncrna and ncrna['name']:
-        LOGGER.debug("Using transcript name for name of %s",
-                     ncrna['primaryId'])
-        name = ncrna['name']
-    if 'gene' in ncrna:
-        gene = ncrna['gene']
-        if 'name' in gene:
-            LOGGER.debug("Using gene name for name of %s",
+class NameValidator(object):
+    def validate_ncrna(self, ncrna):
+        name = None
+        if 'description' in ncrna and ncrna['description']:
+            LOGGER.debug("Using transcript description for name of %s",
                          ncrna['primaryId'])
-            name = gene['name']
-        if 'symbol' in gene:
-            LOGGER.debug("Using gene symbol for name of %s",
+            name = ncrna['description']
+        if 'name' in ncrna and ncrna['name']:
+            LOGGER.debug("Using transcript name for name of %s",
                          ncrna['primaryId'])
-            name = gene['symbol']
+            name = ncrna['name']
+        if 'gene' in ncrna:
+            gene = ncrna['gene']
+            if 'name' in gene:
+                LOGGER.debug("Using gene name for name of %s",
+                             ncrna['primaryId'])
+                name = gene['name']
+            if 'symbol' in gene:
+                LOGGER.debug("Using gene symbol for name of %s",
+                             ncrna['primaryId'])
+                name = gene['symbol']
 
-    if name:
-        LOGGER.debug("Using name %s for %s", name, ncrna['primaryId'])
-    else:
-        yield js.ValidationError("No name for %s" % ncrna['primaryId'])
+        if name:
+            LOGGER.debug("Using name %s for %s", name, ncrna['primaryId'])
+        else:
+            yield js.ValidationError("No name for %s" % ncrna['primaryId'])
 
 
-def coordinate_direction(ncrna):
-    for location in ncrna.get('genomeLocations', []):
-        for exon in location['exons']:
-            if exon['strand'] == '+' or exon['strand'] == '.' or \
-                    exon['strand'] == '-':
-                if not exon['startPosition'] < exon['endPosition']:
-                    yield js.ValidationError("Start must be < end: %s")
-            else:
-                raise ValueError("Shouldn't be here")
+class CoordinateDirectionValidator(object):
+    def validate_ncrna(self, ncrna):
+        for location in ncrna.get('genomeLocations', []):
+            for exon in location['exons']:
+                if exon['strand'] == '+' or exon['strand'] == '.' or \
+                        exon['strand'] == '-':
+                    if not exon['startPosition'] < exon['endPosition']:
+                        yield js.ValidationError("Start must be < end: %s")
+                else:
+                    raise ValueError("Shouldn't be here")
 
 
-def acceptable_uncertainty(ncrna):
-    standard = set('ACGT')
-    sequence = ncrna['sequence']
-    total = float(len(ncrna['sequence']))
-    uncertainty = sum(1 for s in sequence if s not in standard)
-    if float(uncertainty) / total > 0.1:
-        yield ValidationWarning("Sequence for %s is too uncertain (%f/%i)" %
-                                (ncrna, uncertainty, total))
+class AcceptableUncertaintyValidator(object):
+    def validate_ncrna(self, ncrna):
+        standard = set('ACGT')
+        sequence = ncrna['sequence']
+        total = float(len(ncrna['sequence']))
+        uncertainty = sum(1 for s in sequence if s not in standard)
+        if float(uncertainty) / total > 0.1:
+            yield ValidationWarning("Sequence for %s is too uncertain (%f/%i)" %
+                                    (ncrna, uncertainty, total))
 
 
 def validate(data, schema_path, sections_path):
@@ -223,18 +265,20 @@ def validate(data, schema_path, sections_path):
     with open(schema_path, 'r') as raw:
         schema = json.load(raw)
 
+    validators = [
+        # AcceptableUncertaintyValidator(),
+        # CoordinateDirectionValidator(),
+        # NameValidator(),
+        # SecondaryStructureValidator(),
+        # ActiveTaxonIdValidator(),
+        # KnownGlobalIdValidator(),
+        PublicationValidator(),
+    ]
+
     base = 'file://%s/' % sections_path
     validator = ExtendedValidator(
         schema,
-        [
-            acceptable_uncertainty,
-            coordinate_direction,
-            can_produce_name,
-            secondary_structure,
-            ActiveTaxonIdValidator(),
-            KnownGlobalIdValidator(),
-            KnownPmidValidator(),
-        ],
+        validators,
         format_checker=js.FormatChecker(),
         resolver=js.RefResolver(base, None),
     )

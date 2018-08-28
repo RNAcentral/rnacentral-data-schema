@@ -4,7 +4,7 @@
         "id": "metaData.json#",
         "description": "An standard set of information regarding when and from whom the load was generated.",
         "type": "object",
-        "required": ["dateProduced", "dataProvider", "schemaVersion", "publications"],
+        "required": ["dateProduced", "dataProvider", "schemaVersion"],
         "additionalProperties": false,
         "properties": {
                 "dateProduced": {
