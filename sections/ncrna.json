@@ -156,6 +156,14 @@
                                 "$ref": "related-sequence.json#"
                         },
                         "uniqueItems": true
+                },
+                "modifications": {
+                        "description": "A list of all modifications present in the sequence",
+                        "type": "array",
+                        "items": {
+                                "$ref": "modification.json#"
+                        },
+                        "uniqueItems": true
                 }
         }
 }

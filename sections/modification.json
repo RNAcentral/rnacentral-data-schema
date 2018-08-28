@@ -4,15 +4,21 @@
         "description": "A description of a modification that has occured",
         "id": "modification.json#",
         "type": "object",
+        "required": ["index", "shortName", "fullName"],
+        "additionalProperties": false,
         "properties": {
                 "index": {
-                        "type": "int",
+                        "type": "number",
                         "description": "0 based index of the modificaton"
                 },
 
-                "modification": {
+                "shortName": {
                         "type": "string",
-                        "description": "The name of the modification. Should be a human readable name"
+                        "description": "A simple name of the modification. Should be a human readable name"
+                },
+                "fullName": {
+                        "type": "string",
+                        "description": "Should be the full name of the moficiation"
                 }
         }
 }
