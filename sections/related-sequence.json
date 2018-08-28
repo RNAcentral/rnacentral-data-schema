@@ -15,7 +15,7 @@
                         "description": "The relationship between the related sequence and the primary sequence",
                         "enum": [
                                 "precursor",
-                                "matureProduct",
+                                "mature_product",
                                 "target_protein",
                                 "target_rna"
                         ]
