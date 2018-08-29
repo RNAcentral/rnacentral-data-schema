@@ -32,7 +32,10 @@ LOGGER = logging.getLogger(__name__)
 
 TAX_URL = 'https://www.ebi.ac.uk/ena/data/taxonomy/v1/taxon/tax-id/{taxon_id}'
 
-PMID_URL = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:{pmid}+AND+SRC:MED&format=json'
+PUB_URLS = {
+    'PMID': 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:{value}+AND+SRC:MED&format=json',
+    'DOI': 'https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:{value}&format=json',
+}
 
 
 class ValidationWarning(js.ValidationError):
@@ -152,13 +155,14 @@ class PublicationValidator(object):
         if db_id in self.seen:
             return
 
-        if db != 'PMID':
-            return
+        if db not in PUB_URLS:
+            return ValidationWarning("Could not validate %s" % pub_id)
 
         if db_id in self.failed:
-            return js.ValidationError("Invalid PubMed id: %s" % db_id)
+            return js.ValidationError("Invalid reference id: %s" % pub_id)
         try:
-            response = requests.get(PMID_URL.format(pmid=db_id))
+            url = PUB_URLS[db].format(value=db_id)
+            response = requests.get(url)
             response.raise_for_status()
             data = response.json()
             if data['hitCount'] == 0:
@@ -166,7 +170,7 @@ class PublicationValidator(object):
             self.seen.add(db_id)
         except requests.HTTPError:
             self.failed.add(db_id)
-            return js.ValidationError("Invalid PubMed id: %s" % db_id)
+            return js.ValidationError("Invalid reference id: %s" % pub_id)
 
     def validate_metadata(self, metadata):
         publications = metadata.get('publications', [])
