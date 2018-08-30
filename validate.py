@@ -270,12 +270,12 @@ def validate(data, schema_path, sections_path):
         schema = json.load(raw)
 
     validators = [
-        # AcceptableUncertaintyValidator(),
-        # CoordinateDirectionValidator(),
-        # NameValidator(),
-        # SecondaryStructureValidator(),
-        # ActiveTaxonIdValidator(),
-        # KnownGlobalIdValidator(),
+        AcceptableUncertaintyValidator(),
+        CoordinateDirectionValidator(),
+        NameValidator(),
+        SecondaryStructureValidator(),
+        ActiveTaxonIdValidator(),
+        KnownGlobalIdValidator(),
         PublicationValidator(),
     ]
 
