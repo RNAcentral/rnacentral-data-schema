@@ -13,7 +13,7 @@
                 "genomeLocations": [{
                         "assembly": "BDGP6",
                         "exons": [{
-                                "INSDC_accession": "CP007120.1",
+                                "chromosome": "rDNA",
                                 "startPosition": 46770,
                                 "endPosition": 49484,
                                 "strand": "+"
