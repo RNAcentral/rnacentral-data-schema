@@ -113,7 +113,7 @@ class KnownGlobalIdValidator(object):
         gene_id = ncrna.get('gene', {}).get('geneId', None)
         if gene_id:
             name, _ = gene_id.split(':', 1)
-            if name not in self.known:
+            if name.upper() not in self.known:
                 yield js.ValidationError("Unknown database: %s" % name)
 
         for global_id in ncrna.get('crossReferenceIds', []):
