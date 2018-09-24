@@ -30,6 +30,16 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
   evidence for the relationship between sequences.
 - Validate PubMed Ids as being active.
 - Added ZWC as a new database.
+- Added `genomicCoordinateSystem` as a way of specifying how the coordinates in
+  the JSON file are specified. This has been a point of confusion, so hopefully
+  to allowing databases to specify this and supporting the two most common
+  systems we can resolve the issues.
+
+### Removed
+- Removed the `INSC_accession` field. It isn't used and is unneeded in our
+  current system.
+- Removed the `ucsc_accession` for genomicLocations. This is unused and
+  unneeded.
 
 ## [0.3.0] - 2018-05-22
 ### Changed

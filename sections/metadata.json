@@ -31,6 +31,13 @@
                         "type": "string",
                         "description": "The release or version of the data, if available."
                 },
+                "genomicCoordinateSystem": {
+                        "description": "The name of the coordinate system used for genomic coordinates",
+                        "enum": [
+                                "1-start, fully-closed",
+                                "0-start, half-open"
+                        ]
+                },
                 "schemaVersion": {
                         "description": "The schema version this file follows",
                         "enum": [

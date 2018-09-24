@@ -1,7 +1,7 @@
 {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "title": "genomeLocation",
-        "description": "Location of a sequence object used both by display, and to render a browser. All indexes should be 0 based.",
+        "description": "Location of a sequence object used both by display, and to render a browser. All indexes are assumed 0 based half open unless specificed in genomicCoordinateSystem.",
         "id": "genomeLocation.json#",
         "type": "object",
         "required": ["assembly", "exons"],
@@ -14,20 +14,12 @@
                         "type" : "string",
                         "description" : "The assembly on which the position and chromosome are based."
                 },
-                "ucsc_accession": {
-                        "type" : "string",
-                        "description" : "The assembly on which the position and chromosome are based."
-                },
                 "exons": {
                         "type": "array",
                         "items": {
                                 "type": "object",
                                 "required": ["chromosome", "startPosition", "endPosition", "strand"],
                                 "properties": {
-                                        "INSDC_accession": {
-                                                "type" : "string",
-                                                "description" : "The assembly on which the position and chromosome are based."
-                                        },
                                         "startPosition":{
                                                 "type": "number",
                                                 "description": "the start position of the location."
@@ -38,7 +30,7 @@
                                         },
                                         "chromosome":{
                                                 "type": "string",
-                                                "description": "the chromosome of the genomic feature.  Note: whatever loaded here, will be used in JBrowse."
+                                                "description": "The chromosome of the genomic feature."
                                         },
                                         "strand":{
                                                 "enum": ["+", "-", "."],

@@ -14,6 +14,21 @@ The top level schema is `rnacentral-schema.json` with subsections stored in
 `sections`. Examples will be found in `examples` and a validation script
 is provided in `validate.py`.
 
+## Coordinate systems
+
+We support referencing coordinates in two ways, either `0-start, half open` or
+`1-start, fully-closed`. For details on what these mean and why there are two
+coordinate systems please refer to:
+
+- <http://genome.ucsc.edu/blog/the-ucsc-genome-browser-coordinate-counting-systems/>
+- <https://genome.ucsc.edu/FAQ/FAQtracks#tracks1>
+
+By default we assume that the coordinates for genomic locations are `0-based,
+half open`, but this can be changed by setting the `genomicCoordinateSystem`
+property of the `metaData`. This does not change the behavior of annotations about
+any sequence features like, modifications or the coordinates in related
+sequences.
+
 ## Requirements
 
 The validation script requires the python packages found in `requirements.txt`.
