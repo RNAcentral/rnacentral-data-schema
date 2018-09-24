@@ -22,7 +22,7 @@
                         "type": "array",
                         "items": {
                                 "type": "object",
-                                "required": ["startPosition", "endPosition", "strand"],
+                                "required": ["chromosome", "startPosition", "endPosition", "strand"],
                                 "properties": {
                                         "INSDC_accession": {
                                                 "type" : "string",

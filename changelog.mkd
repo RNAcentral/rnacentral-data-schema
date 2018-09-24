@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Rename matureProduct to mature\_product
 - Require all publications have at least one reference, either directly in
   `publications` or indirectly in `metaData.publications`.
+- Require `chromosome` in genomic locations.
 
 ### Added
 - We now validate if the taxon ids are active or obsolete.
