@@ -187,7 +187,8 @@ class PublicationValidator(object):
     def validate_ncrna(self, ncrna):
         publications = ncrna.get('publications', [])
         if not publications and self.requires_ncrna_publications:
-            yield js.ValidationError("Must have at least one reference")
+            yield js.ValidationError("Must have at least one reference for: %s"
+                                     % ncrna['primaryId'])
 
         for pub_id in publications:
             error = self.validate_pmid(pub_id)
