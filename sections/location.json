@@ -16,6 +16,7 @@
                 },
                 "exons": {
                         "type": "array",
+                        "minItems": 1,
                         "items": {
                                 "type": "object",
                                 "required": ["chromosome", "startPosition", "endPosition", "strand"],
