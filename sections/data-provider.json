@@ -1,8 +1,8 @@
 {
         "$schema": "http://json-schema.org/draft-04/schema#",
-        "title": "Known ",
+        "title": "Known Data Sources",
         "id": "dataProvider.json#",
-        "description": "An standard set of information regarding data source and taxon ids for the AGR.",
+        "description": "An standard set of information regarding data source and taxon ids for RNAcentral.",
         "type": "object",
         "additionalProperties": false,
         "properties": {
@@ -19,8 +19,10 @@
                                 "GTRNADB",
                                 "HGNC",
                                 "LNCBASE",
+                                "LNCBOOK",
                                 "LNCIPEDIA",
                                 "LNCRNADB",
+                                "LNCRNAWIKI",
                                 "MGI",
                                 "MICRORNA.ORG",
                                 "MIRBASE",

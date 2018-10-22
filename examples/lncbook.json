@@ -1,0 +1,40 @@
+{
+        "data": [{
+                "primaryId": "LNCBOOK:HSALNT0000551",
+                "taxonId": "NCBITaxon:9606",
+                "soTermId": "SO:0001904",
+                "sequence": "GTCGAGCTGAGAAATGCCAGTGTCGGCCATGCTGGCCACATGTGGGACGGAGCAGGATCCCCAGCCACCCATGCGAGGCCACCCCCTTCCTTGGGGGGGTCCTTGTTCAGAGGGGCACCGACAACTAACTGGCTGAACAAGCCGTCTCATGACGTCTTGGAACCCTGACCATAAAGGTGTAGGACCTGGCCACAGCACCCTGCCTGCGCTGGCACTGCACAGACCCGTCTGTCAGGAGCCTCCTGCCGGCCCATTTCTGCCTATCCAGGCATCGACTTCAGAATCTCAGGTGCTGCTTGGCAGGAAAATGCCCAGCAGGCGGGCCTGGGACTCGGTGATGCGCCTGTGCCGGGGAGGGCAGAACGCTGGTGCCTGGCACAGGTGCCACAACACATACGGTGTTTGGGCGCCATCTTGGAAGCAGAGATCAGGCCTCACCAGACACCAAGCCTGCTGGCACCATGACCCTGGACTCCCAACCTCCACAGCTGGGAAAGAACTCTGCTCCCTAGAAATTACCCAGGCTCGCTCAGCCCACCCTCGCACACTCATTCACTGGCCCGCCCCTTAGGTGTGTGCTCCTGTACCAACACTGAAATCCAGCTGTCACAACAGGCACCCA",
+                "gene": {
+                        "geneId": "LNCBOOK:HSALNG0000226",
+                        "synonyms": ["RP11-181G12.2", "PRKCZ-AS1"],
+                        "url": "http://bigd.big.ac.cn/lncbook/gene?geneid=HSALNG0000226"
+                },
+                "name": "HSALNT0000551",
+                "genomeLocations": [{
+                        "assembly": "GRCh37",
+                        "exons": [{
+                                "chromosome": "chr1",
+                                "startPosition": 2114174,
+                                "endPosition": 2115828,
+                                "strand": "-"
+                        }]
+                }],
+                "url": "http://bigd.big.ac.cn/lncbook/transcript?transid=HSALNT0000551",
+                "crossReferenceIds": [
+                        "LNCRNAWIKI:PRKCZ-AS1",
+                        "ENSEMBL:ENST00000444529",
+                        "NONCODE:NONHSAT000395.2"
+                ]
+        }],
+        "metaData": {
+                "dateProduced": "2017-11-20T22:19:12+01:00",
+                "dataProvider": "LNCBOOK",
+                "release": "1.0",
+                "schemaVersion": "0.4.0",
+                "publications": [
+                        "PMID:25399417"
+                ],
+                "genomicCoordinateSystem": "1-start, fully-closed"
+        }
+}
+
