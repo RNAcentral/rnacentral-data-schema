@@ -19,6 +19,10 @@
                         "$ref" : "global-id.json#/properties/globalId",
                         "description": "The SO Term that represents as best we can, the bioType, or featureType of the object in the file."
                 },
+                "ecoTermId": {
+                        "$ref" : "global-id.json#/properties/globalId",
+                        "description": "The ECO Term that represents the evidence for this sequence having the given SO term."
+                },
                 "sequence": {
                         "$ref": "sequence.json#properties/sequence",
                         "description": "The DNA sequence of this entry."

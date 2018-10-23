@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added LncBook example
 - Added CRS as a data provider
 - Added CRS example
+- Added an ECO term for the SO term annotation. This will help track the
+  evidence for a sequence being an example of the given SO term.
 
 ### Changed
 - Require that all locations have at least one exon.
