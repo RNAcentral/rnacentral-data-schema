@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 ### Added
 - Added LncBook and LncRNAWiki as data providers
 - Added LncBook example
+- Added CRS as a data provider
+- Added CRS example
 
 ### Changed
 - Require that all locations have at least one exon.

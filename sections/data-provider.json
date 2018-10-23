@@ -9,6 +9,7 @@
                 "dataProvider": {
                         "description": "The current list of supported database in RNAcentral",
                         "enum": [
+                                "CRS",
                                 "DICTYBASE",
                                 "ENA",
                                 "ENSEMBL",
