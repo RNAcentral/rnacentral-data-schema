@@ -12,6 +12,10 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 
 ### Changed
 - Require that all locations have at least one exon.
+- Updated modomics example to reflect modifications locations.
+
+### Removed
+- Removed duplication modifications section from the top-level ncRNA entry.
 
 ## [0.4.0] - 2018-09-24
 ### Changed
