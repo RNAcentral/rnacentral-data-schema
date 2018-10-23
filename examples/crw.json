@@ -1,6 +1,6 @@
 {
         "data": [{
-                "primaryId": "CRS:5S:00018::Sulfolobus_solfataricus::X01588",
+                "primaryId": "CRW:5S:00018::Sulfolobus_solfataricus::X01588",
                 "soTermId": "SO:0000652",
                 "taxonId": "NCBITaxon:2287",
                 "sequence": "GCCCACCCGGTCACAGTGAGCGGGCAACACCCGGACTCATTTCGAACCCGGAAGTTAAGCCGCTCACGTTAGTGGGGCCGTGGATACCGTGAGGATCCGCAGCCCCACTAAGCTGGGATGGGTTTT",
@@ -10,7 +10,7 @@
         }],
         "metaData": {
                 "dateProduced": "2018-10-23T22:19:12+01:00",
-                "dataProvider": "CRS",
+                "dataProvider": "CRW",
                 "release": "1.0",
                 "schemaVersion": "0.4.0",
                 "publications": [
