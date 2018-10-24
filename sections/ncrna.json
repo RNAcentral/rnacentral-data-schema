@@ -160,6 +160,10 @@
                                 "$ref": "related-sequence.json#"
                         },
                         "uniqueItems": true
+                },
+                "inferredPhylogeny": {
+                        "description": "A phylogeny that has been inferred for this sequence",
+                        "$ref": "inferred-phylogeny.json#"
                 }
         }
 }
