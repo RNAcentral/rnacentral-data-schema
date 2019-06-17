@@ -1,0 +1,30 @@
+{
+        "data": [
+                {
+                        "primaryId": "TMRNA_WEBSITE:11272",
+                        "taxonId": "NCBITaxon:224308",
+                        "soTermId": "SO:0000584",
+                        "sequence": "GGGGACGTTACGGATTCGACAGGGATGGATCGAGCTTGAGCTGCGAGCCGAGAGGCGATCTCGTAAACACGCACTTAAATATAACTGGCAAAACTAACAGTTTTAACCAAAACGTAGCATTAGCTGCCTAATAAGCGCAGCGAGCTCTTCCTGACATTGCCTATGTGTCTGTGAAGAGCACATCCAAGTAGGCTACGCTTGCGTTCCCGTCTGAGAACGTAAGAAGAGATGAACAGACTAGCTCTCGGAAGGCCCGCCCGCAGGCAAGAAGATGAGTGAAACCATAAATATGCAGGCTACGCTCGTAGACGCTTAAGTAATCGATGTTTCTGGACGTGGGTTCGACTCCCACCGTCTCCATAC",
+                        "description": "Bacillus subtilis subsp. subtilis str. 168 transfer-messenger RNA",
+                        "url": "https://bioinformatics.sandia.gov/tmrna/sequence.html?tmid=11272"
+                },
+                {
+                        "primaryId": "TMRNA_WEBSITE:15794",
+                        "taxonId": "NCBITaxon:1116008",
+                        "soTermId": "SO:0000584",
+                        "sequence": "GGGGCTGATTCTGGATTCGACGGGATTTGCGAAACCCAAGGTGCATGCCGAGGGGCGGTTGGCCTCGTAAAAAGCCGCAAAAAATAGTCGCAAACGACGAAAACTACGCTTTAGCAGCTTAATAACCTGCTTAGAGCCCTCTCTCCCTAGCCTCCGCTCTTAGGACGGGGATCAAGAGAGGTCAAACCCAAAAGAGATCGCGTGGAAGCCCTGCCTGGGGTTGAAGCGTTAAAACTTAATCAGGCTAGTTTGTTAGTGGCGTGTCCGTCCGCAGCTGGCAAGCGAATGTAAAGACTGACTAAGCATGTAGTACCGAGGATGTAGGAATTTCGGACGCGGGTTCAACTCCCGCCAGCTCCACCA",
+                        "description": "Escherichia coli 2735000 transfer-messenger RNA",
+                        "url": "https://bioinformatics.sandia.gov/tmrna/sequence.html?tmid=15794"
+                }
+        ],
+        "metaData": {
+                "dateProduced": "2018-03-01T16:46:00+01:00",
+                "dataProvider": "TMRNA_WEBSITE",
+                "release": "V2.0",
+                "schemaVersion": "0.4.0",
+                "publications": [
+                        "PMID:14681369"
+                ]
+        }
+}
+

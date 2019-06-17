@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
   evidence for a sequence being an example of the given SO term.
 - Add an inferredPhylogeny section. This is allow databases, like SILVA, that
   create their own phylogeny to provide it to RNAcentral.
+- Added tmRNA Website example
 
 ### Changed
 - Require that all locations have at least one exon.
