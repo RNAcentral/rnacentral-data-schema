@@ -16,6 +16,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Add an inferredPhylogeny section. This is allow databases, like SILVA, that
   create their own phylogeny to provide it to RNAcentral.
 - Added tmRNA Website example
+- Added 5SRRNAdb as a data provider
+- Added 5SRRNAdb example
 
 ### Changed
 - Require that all locations have at least one exon.
