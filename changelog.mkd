@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added tmRNA Website example
 - Added 5SRRNAdb as a data provider
 - Added 5SRRNAdb example
+- Added SnoDB example
 
 ### Changed
 - Require that all locations have at least one exon.

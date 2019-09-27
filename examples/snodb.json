@@ -1,0 +1,71 @@
+{
+        "data": [
+                {
+                        "primaryId": "SNODB:1574",
+                        "taxonId": "NCBITaxon:9606",
+                        "symbol": "SNORA74D",
+                        "soTermId": "SO:0000594",
+                        "description": "Homo sapians H/ACA snoRNA (SNORA74D)",
+                        "sequence": "TCCAGCTGTAGGCAGCTGCCTAGGTTGTCTTGTACCTAGGCAAGTGTTACACTGCTGGGAGAACAGCAGCCAATAGCTGGTTGGCATTCTGGCCCTGGTTCATGCCAACTCTTGTGTTGACTACCCCAGGATGCCAGCATA",
+                        "url": "http://scottgroup.med.usherbrooke.ca/snoDB/detail_dispatcher/full_home_view/1574",
+                        "crossReferenceIds": [
+                                "HGNC:HGNC:52219",
+                                "ENSEMBL:ENSG00000252213",
+                                "UCSC:uc021yec.1"
+                        ],
+                        "genomeLocations": [{
+                        "assembly": "GRCh37",
+                        "exons": [{
+                                "chromosome": "5",
+                                "startPosition": 139276180,
+                                "endPosition": 139276320,
+                                "strand": "+"
+                        }]
+                        }],
+                        "relatedSequences": [
+                                { "sequenceId": "ENSEMBL:ENSG00000281398", "relationship": "host_gene" }
+                        ]
+                },
+                {
+                        "primaryId": "SNODB:1108",
+                        "taxonId": "NCBITaxon:9606",
+                        "description": "Homo sapians C/D snoRNA (SNORD114-23)",
+                        "sequence": "TGGATCGATGATGACTACTGGTGGCGTATGAGTCATAGACAATGAATACGTGTCTGGAACTCTGAGGTCCA",
+                        "soTermId": "SO:0000593",
+                        "symbol": "SNORD114-23",
+                        "symbolSynonyms": [
+                                "14q(II-23)"
+                        ],
+                        "url": "http://scottgroup.med.usherbrooke.ca/snoDB/detail_dispatcher/full_home_view/1108",
+                        "genomeLocations": [{
+                                "assembly": "GRCh38",
+                                "exons": [{
+                                        "chromosome": "14",
+                                        "startPosition": 100983876,
+                                        "endPosition": 100983946,
+                                        "strand": "+"
+                                }]
+                        }],
+                        "crossReferenceIds": [
+                                "HGNC:HGNC:33011",
+                                "NCBIGENE:767603",
+                                "REFSEQ:NR_003216",
+                                "RNACENTRAL:URS00006EEEE6",
+                                "SNORNABASE:SR0000122",
+                                "SNORNAATLAS:snoID_0103"
+                        ]
+                }
+
+        ],
+        "metaData": {
+                "dateProduced": "2018-03-01T16:46:00+01:00",
+                "dateProduced": "2017-11-20T22:19:12+01:00",
+                "dataProvider": "FLYBASE",
+                "release": "v1.0.0",
+                "schemaVersion": "0.4.0",
+                "genomicCoordinateSystem": "1-start, fully-closed",
+                "publications": [
+                        "PMID:27799470"
+                ]
+        }
+}

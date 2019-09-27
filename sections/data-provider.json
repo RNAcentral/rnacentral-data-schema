@@ -30,6 +30,7 @@
                                 "MIRBASE",
                                 "MIRDB",
                                 "MODOMICS",
+                                "NCBIGENE",
                                 "NONCODE",
                                 "PDBE",
                                 "POMBASE",
@@ -39,7 +40,10 @@
                                 "RNACENTRAL",
                                 "SGD",
                                 "SILVA",
+                                "SNODB",
                                 "SNOPY",
+                                "SNORNAATLAS",
+                                "SNORNABASE",
                                 "SRPDB",
                                 "TAIR",
                                 "TARBASE",
@@ -50,6 +54,7 @@
                                 "TARGETSCANWORM",
                                 "TMRNAWEBSITE",
                                 "TMRNA_WEBSITE",
+                                "UCSC",
                                 "WORMBASE",
                                 "ZWD"
                         ]

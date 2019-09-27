@@ -18,7 +18,8 @@
                                 "mature_product",
                                 "matureProduct",
                                 "target_protein",
-                                "target_rna"
+                                "target_rna",
+                                "host_gene"
                         ]
                 },
                 "coordinates": {
