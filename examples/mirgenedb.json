@@ -1,0 +1,51 @@
+{
+        "data": [
+                {
+                        "primaryId": "MIRGENEDB:Hsa-Let-7-P1a",
+                        "taxonId": "NCBITaxon:9606",
+                        "symbol": "Hsa-Let-7-P1a",
+                        "soTermId": "SO:0001244",
+                        "sequence": "TGAGGTAGTAGGTTGTATAGTTTAGAATTACATCAAGGGAGATAACTGTACAGCCTCCTAGCTTTCC",
+                        "name": "Hsa-Let-7-P1a stem-loop",
+                        "url": "http://mirgenedb.org/show/hsa/Let-7-P1a",
+                        "version": "1",
+                        "genomeLocations": [{
+                                "assembly": "GRCh38",
+                                "exons": [{
+                                        "chromosome": "11",
+                                        "startPosition": 122146523,
+                                        "endPosition": 122146589,
+                                        "strand": "-"
+                                }]
+                        }],
+                        "relatedSequences": [
+                                { "sequenceId": "MIRGENEDB:Aae-Let-7", "relationship": "ortholog" },
+                                { "sequenceId": "MIRGENEDB:Hsa-Let-7-P1b", "relationship": "paralog" },
+                                { "sequenceId": "MIRGENEDB:Hsa-Let-7-P1a_5p", "relationship": "mature_product" },
+                                { "sequenceId": "MIRGENEDB:Hsa-Let-7-P1a_3p", "relationship": "mature_product" }
+                        ]
+                },
+                {
+                        "primaryId": "MIRGENEDB:Hsa-Let-7-P1a_5p",
+                        "taxonId": "NCBITaxon:9606",
+                        "symbol": "Hsa-Let-7-P1a_5p",
+                        "soTermId": "SO:0000276",
+                        "sequence": "TGAGGTAGTAGGTTGTATAGTT",
+                        "name": "Hsa-Let-7-P1a_5p",
+                        "url": "http://mirgenedb.org/show/hsa/Let-7-P1a",
+                        "version": "1",
+                        "relatedSequences": [
+                                { "sequenceId": "MIRGENEDB:Hsa-Let-7-P1a", "relationship": "precursor" }
+                        ]
+                }
+        ],
+        "metaData": {
+                "dateProduced": "2017-11-20T22:19:12+01:00",
+                "dataProvider": "MIRGENEDB",
+                "release": "2.0",
+                "schemaVersion": "0.4.0",
+                "publications": [
+                        "DOI:10.1093/nar/gkz885"
+                ]
+        }
+}

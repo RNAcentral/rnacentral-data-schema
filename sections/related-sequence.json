@@ -19,7 +19,9 @@
                                 "matureProduct",
                                 "target_protein",
                                 "target_rna",
-                                "host_gene"
+                                "host_gene",
+                                "ortholog",
+                                "paralog"
                         ]
                 },
                 "coordinates": {
