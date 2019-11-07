@@ -28,6 +28,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Require that all locations have at least one exon.
 - Updated modomics example to reflect modifications locations.
 - Renamed CRS -> CRW
+- Extend sequence validation regex to cover all of IUPAC
 
 ### Removed
 - Removed duplication modifications section from the top-level ncRNA entry.
