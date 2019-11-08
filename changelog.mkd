@@ -23,6 +23,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added MirGeneDB example
 - Added ortholog relationship type
 - Added paralog relationship type
+- Added paralogue relationship type
 
 ### Changed
 - Require that all locations have at least one exon.

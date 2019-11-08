@@ -21,7 +21,8 @@
                                 "target_rna",
                                 "host_gene",
                                 "ortholog",
-                                "paralog"
+                                "paralog",
+                                "paralogue"
                         ]
                 },
                 "coordinates": {
