@@ -14,15 +14,15 @@
                 "relationship": {
                         "description": "The relationship between the related sequence and the primary sequence",
                         "enum": [
-                                "precursor",
-                                "mature_product",
-                                "matureProduct",
-                                "target_protein",
-                                "target_rna",
                                 "host_gene",
+                                "matureProduct",
+                                "mature_product",
                                 "ortholog",
                                 "paralog",
-                                "paralogue"
+                                "paralogue",
+                                "precursor",
+                                "target_protein",
+                                "target_rna"
                         ]
                 },
                 "coordinates": {

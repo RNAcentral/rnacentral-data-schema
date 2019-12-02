@@ -24,12 +24,14 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added ortholog relationship type
 - Added paralog relationship type
 - Added paralogue relationship type
+- Added SnoRNADB data provider
 
 ### Changed
 - Require that all locations have at least one exon.
 - Updated modomics example to reflect modifications locations.
 - Renamed CRS -> CRW
 - Extend sequence validation regex to cover all of IUPAC
+- Reorder related sequences enum
 
 ### Removed
 - Removed duplication modifications section from the top-level ncRNA entry.
