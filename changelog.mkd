@@ -26,6 +26,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added paralogue relationship type
 - Added SnoRNADB data provider
 - Added simple SGD example
+- Added ZFIN as a data provider
 
 ### Changed
 - Require that all locations have at least one exon.
