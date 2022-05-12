@@ -249,7 +249,7 @@ class CoordinateDirectionValidator(object):
                 if exon['strand'] == '+' or exon['strand'] == '.' or \
                         exon['strand'] == '-':
                     if not exon['startPosition'] < exon['endPosition']:
-                        yield js.ValidationError("Start must be < end: %s")
+                        yield js.ValidationError("Start must be < end: {}".format(ncrna.get("primaryId")))
                 else:
                     raise ValueError("Shouldn't be here")
 
@@ -265,25 +265,29 @@ class AcceptableUncertaintyValidator(object):
                                     (ncrna, uncertainty, total))
 
 
-def validate(data, schema_path, sections_path):
+def validate(data, schema_path, sections_path, suppressed_errors):
 
     with open(schema_path, 'r') as raw:
         schema = json.load(raw)
 
-    validators = [
-        AcceptableUncertaintyValidator(),
-        CoordinateDirectionValidator(),
-        NameValidator(),
-        SecondaryStructureValidator(),
-        ActiveTaxonIdValidator(),
-        KnownGlobalIdValidator(),
-        PublicationValidator(),
-    ]
+    validators = {
+        "uncertainty" : AcceptableUncertaintyValidator(),
+        "direction" : CoordinateDirectionValidator(),
+        "name" : NameValidator(),
+        "structure" : SecondaryStructureValidator(),
+        "active_taxon" : ActiveTaxonIdValidator(),
+        "known_db" : KnownGlobalIdValidator(),
+        "publications" : PublicationValidator(),
+    }
+    # Skip LOGGING of these validators, but still count them
+    skipped_validators = []
+    for e_type in suppressed_errors:
+        skipped_validators.append(type(validators[e_type]).__name__)
 
     base = 'file://%s/' % sections_path
     validator = ExtendedValidator(
         schema,
-        validators,
+        validators.values(),
         format_checker=js.FormatChecker(),
         resolver=js.RefResolver(base, None),
     )
@@ -292,6 +296,8 @@ def validate(data, schema_path, sections_path):
     counts = Counter()
     for error in validator.iter_errors(data):
         counts[error.validator] += 1
+        if error.validator in skipped_validators:
+            continue
         if isinstance(error, ValidationWarning):
             LOGGER.warning(error.message)
         else:
@@ -309,12 +315,13 @@ def validate(data, schema_path, sections_path):
               help='Filename of the schema to use')
 @click.option('--sections', default=SECTIONS,
               help='Directory where schema parts are kept')
-def main(filename, schema=None, sections=None):
-    with open(filename, 'r') as raw:
+@click.option('--suppress', '-s', multiple=True )
+def main(filename, schema=None, sections=None, suppress=[]):
+    with open(filename, 'r', encoding='utf-8') as raw:
         data = json.load(raw)
 
     data['metaData']["dataProvider"] = data['metaData']["dataProvider"].upper()
-    validate(data, schema, os.path.abspath(sections))
+    validate(data, schema, os.path.abspath(sections), suppress)
 
 
 if __name__ == '__main__':
