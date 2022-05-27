@@ -18,14 +18,17 @@ import pytest
 import validate as val
 
 
-@pytest.mark.parametrize('sequence,expected', [
-    ('AAAAAAAAAG', True),
-    ('ACAAAAAAAG', True),
-    ('ACNAAAAAAG', True),
-    ('ACNAAABAAG', False),
-])
+@pytest.mark.parametrize(
+    "sequence,expected",
+    [
+        ("AAAAAAAAAG", True),
+        ("ACAAAAAAAG", True),
+        ("ACNAAAAAAG", True),
+        ("ACNAAABAAG", False),
+    ],
+)
 def test_can_detect_bad_sequences(sequence, expected):
-    data = {'sequence': sequence}
+    data = {"sequence": sequence}
     validator = val.AcceptableUncertaintyValidator()
     result = bool(list(validator.validate_ncrna(data)))
     assert (not result) == expected

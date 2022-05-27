@@ -20,15 +20,14 @@ import pytest
 
 import validate
 
-EXAMPLE_DIR = 'examples'
+EXAMPLE_DIR = "examples"
 
 
 @pytest.mark.parametrize(
-    'filename',
-    [os.path.join(EXAMPLE_DIR, f) for f in os.listdir(EXAMPLE_DIR)]
+    "filename", [os.path.join(EXAMPLE_DIR, f) for f in os.listdir(EXAMPLE_DIR)]
 )
 def test_can_validate_all_example_files(filename):
-    with open(filename, 'r') as raw:
+    with open(filename, "r") as raw:
         data = json.load(raw)
 
     validate.validate(data, validate.SCHEMA_NAME, validate.SECTIONS)
