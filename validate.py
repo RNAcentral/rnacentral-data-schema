@@ -266,7 +266,7 @@ class AcceptableUncertaintyValidator(object):
             )
 
 
-def validate(data, schema_path, sections_path, suppressed_errors):
+def validate(data, schema_path, sections_path, suppressed_errors=[]):
 
     with open(schema_path, "r") as raw:
         schema = json.load(raw)
