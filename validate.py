@@ -47,10 +47,13 @@ class UnrunnableValidator(js.ValidationError):
     pass
 
 
-class ExtendedValidator(js.validators.Draft4Validator):
+class ExtendedValidator:
     def __init__(self, schema, extra, *args, **kwargs):
+        validator_class = js.validators.validator_for(schema)
+        validator_class.check_schema(schema)
+        self.schema = schema
+        self.json_validator = validator_class(schema, *args, **kwargs)
         self.extra_validators = extra
-        super(ExtendedValidator, self).__init__(schema, *args, **kwargs)
 
     def update_error(self, instance, validator, item, error):
         # Copied from the jsonschema validators
@@ -66,6 +69,8 @@ class ExtendedValidator(js.validators.Draft4Validator):
         for validator in self.extra_validators:
             if not hasattr(validator, "validate_metadata"):
                 continue
+
+            value = None
             try:
                 value = instance["metaData"]
                 for error in validator.validate_metadata(value):
@@ -84,9 +89,8 @@ class ExtendedValidator(js.validators.Draft4Validator):
                 except Exception as err:
                     yield (validator, ncrna, UnrunnableValidator(err))
 
-    def iter_errors(self, instance, _schema=None):
-        parent = super(ExtendedValidator, self)
-        for error in parent.iter_errors(instance, _schema=_schema):
+    def iter_errors(self, instance):
+        for error in self.json_validator.iter_errors(instance):
             yield error
 
         if isinstance(instance, dict):
