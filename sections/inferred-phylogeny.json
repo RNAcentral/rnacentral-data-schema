@@ -3,16 +3,6 @@
         "title": "Phylogeny definition",
         "description": "A way of tracking an inferred phylogeny",
         "id": "inferred-phylogeny.json#",
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-                "assignment": {
-                        "type": "string",
-                        "description": "A '; ' separated string of the phylogeny."
-                },
-                "id": {
-                        "$ref" : "global-id.json#/properties/globalId",
-                        "description": "An id for the sequence in the inferred phylogeny."
-                }
-        }
+        "type": "string",
+        "description": "A taxonomy string"
 }

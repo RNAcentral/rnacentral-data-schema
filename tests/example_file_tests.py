@@ -13,21 +13,78 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import os
+import copy
 import json
+import itertools as it
+from pathlib import Path
 
 import pytest
 
 import validate
 
-EXAMPLE_DIR = "examples"
+
+def examples():
+    data = []
+    for example in Path("examples/").glob("*.json"):
+        with example.open("r") as raw:
+            data.append(json.load(raw))
+    return data
+
+
+def filenames():
+    data = []
+    for example in Path("examples/").glob("*.json"):
+        data.append(str(example))
+    return data
+
+
+@pytest.mark.parametrize("data", examples())
+def test_can_validate_all_example_files(data):
+    validate.validate(data, validate.SCHEMA_NAME, validate.SECTIONS)
 
 
 @pytest.mark.parametrize(
-    "filename", [os.path.join(EXAMPLE_DIR, f) for f in os.listdir(EXAMPLE_DIR)]
+    "field,data", list(it.product(["primaryId", "sequence", "url"], examples()))
 )
-def test_can_validate_all_example_files(filename):
+def test_fails_when_missing_key_properties(field, data):
+    del data["data"][0][field]
+    with pytest.raises(Exception):
+        validate.validate(data, validate.SCHEMA_NAME, validate.SECTIONS)
+
+
+@pytest.mark.parametrize("filename", filenames())
+def test_requires_one_of_taxon_id_or_inferred(filename):
     with open(filename, "r") as raw:
         data = json.load(raw)
-
     validate.validate(data, validate.SCHEMA_NAME, validate.SECTIONS)
+    fields = ["taxonId", "inferredPhylogeny"]
+    for index, ncrna in enumerate(data["data"]):
+        current = copy.deepcopy(data)
+        for field in fields:
+            if field in ncrna:
+                del current["data"][index][field]
+                break
+        else:
+            raise ValueError("Must update test to handle no taxon/inferredPhylogeny")
+
+        with pytest.raises(Exception):
+            validate.validate(current, validate.SCHEMA_NAME, validate.SECTIONS)
+
+
+@pytest.mark.parametrize("filename", filenames())
+def test_requires_one_of_so_term_or_rfam_accession(filename):
+    with open(filename, "r") as raw:
+        data = json.load(raw)
+    validate.validate(data, validate.SCHEMA_NAME, validate.SECTIONS)
+    fields = ["soTermId", "rfamAccession"]
+    for index, ncrna in enumerate(data["data"]):
+        current = copy.deepcopy(data)
+        for field in fields:
+            if field in ncrna:
+                del current["data"][index][field]
+                break
+        else:
+            raise ValueError("Must update test to handle no taxon/inferredPhylogeny")
+
+        with pytest.raises(Exception):
+            validate.validate(current, validate.SCHEMA_NAME, validate.SECTIONS)

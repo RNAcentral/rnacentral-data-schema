@@ -27,6 +27,8 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Added SnoRNADB data provider
 - Added simple SGD example
 - Added ZFIN as a data provider
+- Added Mgnify as a data provider
+- Added rfamAccession field
 
 ### Changed
 - Require that all locations have at least one exon.
@@ -34,6 +36,9 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Renamed CRS -> CRW
 - Extend sequence validation regex to cover all of IUPAC
 - Reorder related sequences enum
+- Make inferredPhylogeny a string
+- Allow schema to have one of taxonId or inferredPhylogeny
+- Allow schema to have one of soTermId or rfamAccession
 
 ### Removed
 - Removed duplication modifications section from the top-level ncRNA entry.

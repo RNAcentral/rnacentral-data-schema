@@ -4,7 +4,21 @@
         "description": "A sequence to import to RNAcentral. These entries must not be pseudogenes or coding RNA transcripts.",
         "id": "ncrna.json#",
         "type": "object",
-        "required": ["primaryId", "taxonId", "soTermId", "sequence", "url"],
+        "required": ["primaryId", "sequence", "url"],
+        "allOf": [
+                {
+                        "oneOf": [
+                                { "required": [ "taxonId" ] },
+                                { "required": [ "inferredPhylogeny" ] }
+                        ]
+                },
+                {
+                        "oneOf": [
+                                { "required": [ "soTermId" ] },
+                                { "required": [ "rfamAccession" ] }
+                        ]
+                }
+        ],
         "additionalProperties": false,
         "properties": {
                 "primaryId": {
@@ -120,6 +134,11 @@
                 "sourceModel": {
                         "description": "Information about the model used to find this sequence",
                         "$ref" : "global-id.json#/properties/globalId"
+                },
+                "rfamAccession": {
+                        "description": "Which Rfam model produced the sequence, similar to sourceModel but specific to Rfam",
+                        "type": "string",
+                        "pattern": "^RF\\d+$"
                 },
                 "product": {
                         "description": "The name of the product, this should be more specific than the name of the SO term that was provided",

@@ -23,8 +23,6 @@ import click
 import requests
 import jsonschema as js
 
-# import jsonref as jr
-
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 SECTIONS = os.path.join(HERE, "sections")
@@ -128,6 +126,9 @@ class ActiveTaxonIdValidator(object):
         self.failed = set()
 
     def validate_ncrna(self, ncrna):
+        if "taxonId" not in ncrna:
+            return
+
         taxon_id = int(ncrna["taxonId"].split(":", 1)[1])
         if taxon_id in self.seen:
             return
@@ -160,6 +161,7 @@ class PublicationValidator(object):
 
         if db_id in self.failed:
             return js.ValidationError("Invalid reference id: %s" % pub_id)
+
         try:
             url = PUB_URLS[db].format(value=db_id)
             response = requests.get(url)
@@ -168,7 +170,8 @@ class PublicationValidator(object):
             if data["hitCount"] == 0:
                 raise requests.HTTPError("Not found")
             self.seen.add(db_id)
-        except requests.HTTPError:
+        except requests.HTTPError as err:
+            print(err)
             self.failed.add(db_id)
             return js.ValidationError("Invalid reference id: %s" % pub_id)
 

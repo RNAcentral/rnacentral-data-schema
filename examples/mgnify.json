@@ -1,0 +1,276 @@
+{
+     "data": [
+          {
+               "primaryId": "MGNIFY:MGYG000298022_7_ncRNA2",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Actinomycetaceae;g__Pauljensenia;s__Pauljensenia sp000411415",
+               "sequence": "CGGATGTAGCTCAATGGTAGAGCCTCTGCCTTCCAAGCAGATCACGCGGGTTCGATTCCCGTCATCCG",
+               "name": "tRNA",
+               "version": "1",
+               "rfamAccession": "RF00005",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000298022",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000298022_7",
+                                   "startPosition": 116,
+                                   "endPosition": 183,
+                                   "strand": "+"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000298022?contig_id=MGYG000298022_7&start=116&end=183&functional-annotation=ncrna#genome-browser",
+               "publications": [
+                    "PMID:33239396",
+                    "PMID:34110243",
+                    "PMID:34378983"
+               ],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          },
+          {
+               "primaryId": "MGNIFY:MGYG000298022_22_ncRNA3",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Actinomycetaceae;g__Pauljensenia;s__Pauljensenia sp000411415",
+               "sequence": "AGCGGAAATTTCGTCTCACGCGGGGAACCCAACCGCGGCTCCTCGGAGCCTTGGGGTGAAGCTCGCCAGCCGAGCCGGACTTCCCGTCCGAACCCGACAGCTAACCTCGCAGGGAAACAGGGAGAA",
+               "name": "ydaO/yuaA leader",
+               "version": "1",
+               "rfamAccession": "RF00379",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000298022",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000298022_22",
+                                   "startPosition": 8945,
+                                   "endPosition": 9070,
+                                   "strand": "-"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000298022?contig_id=MGYG000298022_22&start=8945&end=9070&functional-annotation=ncrna#genome-browser",
+               "publications": [
+                    "PMID:33239396",
+                    "PMID:34110243",
+                    "PMID:34378983"
+               ],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          },
+          {
+               "primaryId": "MGNIFY:MGYG000298022_37_ncRNA6",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Actinomycetaceae;g__Pauljensenia;s__Pauljensenia sp000411415",
+               "sequence": "TGGTGGTCATAGCACCGGGGAAACGCCCAGCCTCCATTCCGAACCTGGAAGCTAAGCCCGGCAGCGCCAATGGTACTGCAACCGCCAGGTTGTGGGAGAGTAGGACACCGC",
+               "name": "5S ribosomal RNA",
+               "version": "1",
+               "rfamAccession": "RF00001",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000298022",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000298022_37",
+                                   "startPosition": 261045,
+                                   "endPosition": 261155,
+                                   "strand": "-"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000298022?contig_id=MGYG000298022_37&start=261045&end=261155&functional-annotation=ncrna#genome-browser",
+               "publications": [
+                    "PMID:33239396",
+                    "PMID:34110243",
+                    "PMID:34378983"
+               ],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          },
+          {
+               "primaryId": "MGNIFY:MGYG000298022_37_ncRNA7",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Actinomycetaceae;g__Pauljensenia;s__Pauljensenia sp000411415",
+               "sequence": "CGGATGTGGCTCAGTTGGTAGAGCATCACCTTGCCAAGGTGAGGGTCGCGGGTTCGAGTCCCGTCATCCG",
+               "name": "tRNA",
+               "version": "1",
+               "rfamAccession": "RF00005",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000298022",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000298022_37",
+                                   "startPosition": 22618,
+                                   "endPosition": 22687,
+                                   "strand": "+"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000298022?contig_id=MGYG000298022_37&start=22618&end=22687&functional-annotation=ncrna#genome-browser",
+               "publications": [
+                    "PMID:33239396",
+                    "PMID:34110243",
+                    "PMID:34378983"
+               ],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          },
+          {
+               "primaryId": "MGNIFY:MGYG000298022_48_ncRNA12",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Actinomycetaceae;g__Pauljensenia;s__Pauljensenia sp000411415",
+               "sequence": "GGGGATGATCGGTTTCGACAGTGGTCGTCGATCGAAGTGAAGCGAGCCGAGAATGTACGCTCATCTCGTTAACGATGCGTGCAAACCAATAGGTGCCGAACAGAATCGCACCGACTACGTTCTCGCTGCCTGATATCGCAGCCTGAACCTTTAGTCCGTCAGCCCGGGAGTTGCTTCCGGCCCGGTGTCTGGCGTCGTCTAGGGAGCCACTGGGAGTCGCCCATGTTGGTGGGGCGCCTCCGACACTCAATCAACTGAGCCTATCCAGCGGTGTGTCTACGCAATGCTGGGGGCTGAGAAATAAAACCGTAGACTGCGCTCGGAGAAGAATTCGGGGCCGGCTGCTGGACGGGGGTTCGATTCCCCCCATCTCCACC",
+               "name": "transfer-messenger RNA",
+               "version": "1",
+               "rfamAccession": "RF00023",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000298022",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000298022_48",
+                                   "startPosition": 42973,
+                                   "endPosition": 43349,
+                                   "strand": "-"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000298022?contig_id=MGYG000298022_48&start=42973&end=43349&functional-annotation=ncrna#genome-browser",
+               "publications": [
+                    "PMID:33239396",
+                    "PMID:34110243",
+                    "PMID:34378983"
+               ],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          },
+          {
+               "primaryId": "MGNIFY:MGYG000298022_55_ncRNA13",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Actinomycetaceae;g__Pauljensenia;s__Pauljensenia sp000411415",
+               "sequence": "TCGGCTGGGCGGCCGCGCGCGGAAACGCTCGAGGAACGTCCGGGCTCCACAGGGCAGGGTGATGGCTAACAGCCACCCGGGGTAACCCGCGGGACAGTGCCACAGAAAACAAACCACCGGCGCACACGCGTCGGTAAGGGTGAAAAGGTGAGGTAAGAGCTCACCAGCGGCGCGGGCGACCGCGTCGGCTAGGTAAACCCCACCCGGAGCAAGACCGAGCAGCAGGCAGGGCGGCCCGTCCGATGCCTGCGGGTAGGTTGCTGGAGGCCGTCGGTAACGACGGTCCTAGATAGATGGTCGCCACCGCACGTTCGGCAACGGCGTGCGTGACAGAACCCGGCGTATAGGCCGAC",
+               "name": "Bacterial RNase P class A",
+               "version": "1",
+               "rfamAccession": "RF00010",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000298022",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000298022_55",
+                                   "startPosition": 13951,
+                                   "endPosition": 14303,
+                                   "strand": "-"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000298022?contig_id=MGYG000298022_55&start=13951&end=14303&functional-annotation=ncrna#genome-browser",
+               "publications": [
+                    "PMID:33239396",
+                    "PMID:34110243",
+                    "PMID:34378983"
+               ],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          },
+          {
+               "primaryId": "MGNIFY:MGYG000298022_56_ncRNA15",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Actinobacteriota;c__Actinomycetia;o__Actinomycetales;f__Actinomycetaceae;g__Pauljensenia;s__Pauljensenia sp000411415",
+               "sequence": "TGTCGTGACTGGCGAATAGGTGGGCCACCACCGGGGAGCGACGCGTCGGCATCGATAGCCGCCCGCCTGGGCT",
+               "name": "ZMP/ZTP riboswitch",
+               "version": "1",
+               "rfamAccession": "RF01750",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000298022",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000298022_56",
+                                   "startPosition": 3472,
+                                   "endPosition": 3544,
+                                   "strand": "-"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000298022?contig_id=MGYG000298022_56&start=3472&end=3544&functional-annotation=ncrna#genome-browser",
+               "publications": [
+                    "PMID:33239396",
+                    "PMID:34110243",
+                    "PMID:34378983"
+               ],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          },
+          {
+               "primaryId": "MGNIFY:MGYG000299010_2_ncRNA1",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Peptostreptococcales;f__Peptostreptococcaceae;g__Peptostreptococcus;s__Peptostreptococcus sp900759325",
+               "sequence": "GTTACTATAGCAAGGAGGATACACCTGTTCCCATTCCGAACACAGAAGTTAAGCTCCTTAGCGCTGAAGGTACTTGGTGGGAAGCTGCCTGGGAGAATAGGACGT",
+               "name": "5S ribosomal RNA",
+               "version": "1",
+               "rfamAccession": "RF00001",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000299010",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000299010_2",
+                                   "startPosition": 797,
+                                   "endPosition": 901,
+                                   "strand": "-"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000299010?contig_id=MGYG000299010_2&start=797&end=901&functional-annotation=ncrna#genome-browser",
+               "publications": [],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          },
+          {
+               "primaryId": "MGNIFY:MGYG000299010_2_ncRNA2",
+               "inferredPhylogeny": "GTDB:d__Bacteria;p__Firmicutes_A;c__Clostridia;o__Peptostreptococcales;f__Peptostreptococcaceae;g__Peptostreptococcus;s__Peptostreptococcus sp900759325",
+               "sequence": "TGGTGTGGCTCAACGGTAGAGCAGCTGACTTGTAATCAGCAGGTTGTAGGTTCGATTCCTATCACC",
+               "name": "tRNA",
+               "version": "1",
+               "rfamAccession": "RF00005",
+               "genomeLocations": [
+                    {
+                         "assembly": "MGYG000299010",
+                         "exons": [
+                              {
+                                   "chromosome": "MGYG000299010_2",
+                                   "startPosition": 474,
+                                   "endPosition": 539,
+                                   "strand": "-"
+                              }
+                         ]
+                    }
+               ],
+               "url": "https://www.ebi.ac.uk/metagenomics/genomes/MGYG000299010?contig_id=MGYG000299010_2&start=474&end=539&functional-annotation=ncrna#genome-browser",
+               "publications": [],
+               "additionalAnnotations": {
+                    "catalog_name": "human oral genome catalogue"
+               }
+          }
+     ],
+     "metaData": {
+          "dateProduced": "2022-01-01T00:00:00+00:00",
+          "dataProvider": "MGNIFY",
+          "release": "v1.0",
+          "genomicCoordinateSystem": "1-start, fully-closed",
+          "schemaVersion": "0.2.0",
+          "publications": [
+               "DOI:10.1016/j.jmb.2023.168016"
+          ]
+     }
+}
