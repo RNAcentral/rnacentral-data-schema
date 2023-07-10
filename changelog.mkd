@@ -39,6 +39,7 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 - Make inferredPhylogeny a string
 - Allow schema to have one of taxonId or inferredPhylogeny
 - Allow schema to have one of soTermId or rfamAccession
+- Allow schema to have one of soTermId or rfamAccession or sourceModel
 
 ### Removed
 - Removed duplication modifications section from the top-level ncRNA entry.
