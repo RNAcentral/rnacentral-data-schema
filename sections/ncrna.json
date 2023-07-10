@@ -15,7 +15,7 @@
                 {
                         "oneOf": [
                                 { "required": [ "soTermId" ] },
-                                { "required": [ "rfamAccession" ] }
+                                { "required": [ "rfamAccession" ] },
                                 { "required": [ "sourceModel" ] }
                         ]
                 }
